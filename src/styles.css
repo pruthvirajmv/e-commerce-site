@@ -1,4 +1,119 @@
+@import url("https://development-dev-suit.netlify.app/CSS/main.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  min-height: 100vh;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  left: 0;
+}
+
+.nav-list {
+  cursor: pointer;
+  display: flex;
+}
+
+.nav-list li {
+  padding: 0.6rem;
+  font-size: 1.4rem;
+}
+
+.nav-list li:nth-child(1) {
+  display: none;
+}
+
+main {
+  min-height: 80vh;
+}
+
+.bttn-no-style {
+  color: var(--primary);
+  background-color: inherit;
+  border: none;
+}
+
+.brand-name {
+  font-size: 1.3rem;
+}
+
+.card {
+  width: 250px;
+  row-gap: 0.5rem;
+  padding: 0;
+  padding-bottom: 1rem;
+}
+
+.card .card-price {
+  flex-grow: 1;
+}
+
+.card .card-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card .card-dismiss {
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  padding-top: 0.2rem;
+}
+
+.badge.badge-icon {
+  left: 0.8rem;
+  top: -0.5rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  height: 1.2rem;
+  min-width: 1.2rem;
+  padding: 0;
+}
+
+.bttn {
+  font-size: 0.9rem;
+  min-width: max-content;
+}
+
+.empty-msg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  height: 80vh;
+}
+
+.notify {
+  background-color: black;
+  opacity: 0.9;
+  top: 5rem;
+  right: 1.5rem;
+  bottom: inherit;
+  font-size: 1.2rem;
+}
+
+.footer-nav {
+  position: relative;
+  width: 100%;
+  padding: 1rem 1rem;
+}
+
+.bttn-floating-action {
+  color: black;
+}
+
+@media screen and (min-width: 768px) {
+  .nav-list li:nth-child(1) {
+    display: inherit;
+  }
 }
