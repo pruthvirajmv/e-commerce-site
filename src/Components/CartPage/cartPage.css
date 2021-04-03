@@ -21,18 +21,13 @@
   position: relative;
 }
 
-.card.card-horizontal {
-  flex-direction: column;
-  height: max-content;
-  padding: 0;
-}
 .card-side-txt {
   padding-left: 0rem;
   flex-wrap: wrap;
 }
 
 .card-horizontal {
-  width: 600px;
+  display: inherit;
 }
 
 .card-horizontal .card-dismiss {
@@ -43,5 +38,14 @@
 @media screen and (min-width: 768px) {
   .products-display-cart > .card {
     flex-direction: row;
+  }
+  .card-horizontal {
+    display: grid;
+  }
+
+  .card.card-horizontal {
+    width: 600px;
+    height: max-content;
+    padding: 0;
   }
 }
