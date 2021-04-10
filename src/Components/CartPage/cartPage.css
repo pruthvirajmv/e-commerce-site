@@ -28,6 +28,7 @@
 
 .card-horizontal {
   display: inherit;
+  width: 15rem;
 }
 
 .card-horizontal .card-dismiss {
@@ -44,8 +45,8 @@
   }
 
   .card.card-horizontal {
-    width: 600px;
     height: max-content;
     padding: 0;
+    width: 26rem;
   }
 }

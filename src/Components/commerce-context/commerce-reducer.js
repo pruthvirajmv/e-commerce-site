@@ -1,13 +1,13 @@
 import { toastMsgs } from "../Functionalities/toastMsgs";
 
-export default function reducer(state, action) {
-  switch (action.type) {
+export default function reducer(state, { type, payload }) {
+  switch (type) {
     // Product Page Functionalities
     // Loading on page
     case "LOAD_PRODUCTS":
       return {
         ...state,
-        ProductsList: action.payload.sort(
+        ProductsList: payload.sort(
           (a, b) => b.popularityScore - a.popularityScore
         )
       };
@@ -16,13 +16,16 @@ export default function reducer(state, action) {
       return {
         ...state,
         ProductsList: state.ProductsList.map((item) =>
-          item.id === action.payload.id
+          item.id === payload.id
             ? { ...item, isWishListed: !item.isWishListed }
             : item
         ),
-        ToastMsg: !action.payload.isWishListed
-          ? toastMsgs.addToWishList
-          : toastMsgs.removeFromWishlist
+        Toast: {
+          status: "Show",
+          msg: !payload.isWishListed
+            ? toastMsgs.addToWishList
+            : toastMsgs.removeFromWishlist
+        }
       };
 
     // Add to cart
@@ -30,11 +33,14 @@ export default function reducer(state, action) {
       return {
         ...state,
         ProductsList: state.ProductsList.map((item) =>
-          item.id === action.payload.id
+          item.id === payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
-        ToastMsg: toastMsgs.addToCart
+        Toast: {
+          status: "Show",
+          msg: toastMsgs.addToCart
+        }
       };
 
     // CART Functionalities
@@ -43,11 +49,12 @@ export default function reducer(state, action) {
       return {
         ...state,
         ProductsList: state.ProductsList.map((item) => {
-          return item.id === action.payload.id
-            ? { ...item, quantity: 0 }
-            : item;
+          return item.id === payload.id ? { ...item, quantity: 0 } : item;
         }),
-        ToastMsg: toastMsgs.removeFromCart
+        Toast: {
+          status: "Show",
+          msg: toastMsgs.removeFromCart
+        }
       };
 
     // quantity increment and decrment
@@ -55,41 +62,57 @@ export default function reducer(state, action) {
       return {
         ...state,
         ProductsList:
-          action.payload.quantity > 1
+          payload.quantity > 1
             ? state.ProductsList.map((item) =>
-                item.id === action.payload.id
+                item.id === payload.id
                   ? { ...item, quantity: item.quantity - 1 }
                   : item
               )
             : state.ProductsList.map((item) =>
-                item.id === action.payload.id ? { ...item, quantity: 0 } : item
+                item.id === payload.id ? { ...item, quantity: 0 } : item
               ),
-        ToastMsg:
-          action.payload.quantity > 1
-            ? toastMsgs.cartUpdate
-            : toastMsgs.removeFromCart
+        Toast: {
+          status: "Show",
+          msg:
+            payload.quantity > 1
+              ? toastMsgs.cartUpdate
+              : toastMsgs.removeFromCart
+        }
       };
 
     case "INCREMENT_CART_QUANTITY":
       return {
         ...state,
         ProductsList: state.ProductsList.map((item) => {
-          return item.id === action.payload.id
+          return item.id === payload.id
             ? { ...item, quantity: item.quantity + 1 }
             : item;
         }),
-        ToastMsg: toastMsgs.cartUpdate
+        Toast: {
+          status: "Show",
+          msg: toastMsgs.cartUpdate
+        }
       };
 
     case "MOVE_TO_WISHLIST":
       return {
         ...state,
         ProductsList: state.ProductsList.map((item) =>
-          item.id === action.payload.id
+          item.id === payload.id
             ? { ...item, isWishListed: true, quantity: 0 }
             : item
         ),
-        ToastMsg: toastMsgs.moveToWishlist
+        Toast: {
+          status: "Show",
+          msg: toastMsgs.moveToWishlist
+        }
+      };
+
+    //Toast Toggle
+    case "HIDE_TOAST":
+      return {
+        ...state,
+        Toast: { ...state.Toast, status: "Hide" }
       };
 
     default:

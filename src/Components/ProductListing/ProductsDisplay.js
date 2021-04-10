@@ -1,10 +1,10 @@
 import IncrementDecrementButton from "../Functionalities/IncrementDecrementButton";
 import GoToCartButton from "../Functionalities/GoToCartButton";
-import Toast from "../Functionalities/Toast";
+import ToastComponent from "../Functionalities/ToastComponent";
 import useCommerce from "../commerce-context/commerce-context";
 
 export default function ProductsDisplay({ filteredData, setRoute }) {
-  const { dispatch, showToast } = useCommerce();
+  const { state, dispatch } = useCommerce();
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function ProductsDisplay({ filteredData, setRoute }) {
         {filteredData.map((item) => (
           <div
             key={item.id}
-            class={item.inStock ? "card card-shadow" : "card card-grey-out"}
+            class={item.inStock ? "card " : "card card-grey-out"}
           >
             <span
               style={{ display: item.inStock ? "none" : "inherit" }}
@@ -59,7 +59,7 @@ export default function ProductsDisplay({ filteredData, setRoute }) {
           </div>
         ))}
       </div>
-      {showToast === "Show" && <Toast />}{" "}
+      {state.Toast.status === "Show" && <ToastComponent />}{" "}
     </>
   );
 }

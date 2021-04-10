@@ -54,11 +54,12 @@
 }
 
 .products-display {
-  margin: 1rem 0.5rem;
+  margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
+  /* width: 60%; */
   justify-content: center;
-  gap: 1rem 1rem;
+  gap: 0.25rem 0.5rem;
 }
 
 .card .card-details {
@@ -67,6 +68,17 @@
   row-gap: 0.6rem;
   flex-grow: 1;
   padding: 0 0.5rem;
+}
+
+.card {
+  border-color: white;
+  border-style: none;
+  border-top-left-radius: 0;
+}
+
+.card:hover {
+  border: 4px solid white;
+  /* box-shadow: 5px 5px 5px 0px grey; */
 }
 
 .card-details .card-name {

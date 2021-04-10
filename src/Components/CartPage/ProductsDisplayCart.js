@@ -1,8 +1,8 @@
-import Toast from "../Functionalities/Toast";
+import ToastComponent from "../Functionalities/ToastComponent";
 import useCommerce from "../commerce-context/commerce-context";
 
 export default function ProductsDisplayCart({ cartItems }) {
-  const { dispatch, showToast } = useCommerce();
+  const { state, dispatch } = useCommerce();
 
   return (
     <>
@@ -78,7 +78,7 @@ export default function ProductsDisplayCart({ cartItems }) {
             </div>
           </div>
         ))}
-        {showToast === "Show" && <Toast />}
+        {state.Toast.status === "Show" && <ToastComponent />}
       </div>
     </>
   );

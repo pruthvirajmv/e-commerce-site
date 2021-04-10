@@ -4,10 +4,11 @@ export default function ProductsSearch({ dispatch }) {
   const [searchInput, setSearchInput] = useState("");
 
   function searchHandler() {
-    dispatch({
-      type: "SEARCH_FOR_PRODUCTS",
-      payload: searchInput
-    });
+    if (searchInput !== "")
+      dispatch({
+        type: "SEARCH_FOR_PRODUCTS",
+        payload: searchInput
+      });
   }
 
   function clearSearch() {
@@ -23,12 +24,7 @@ export default function ProductsSearch({ dispatch }) {
             type="text"
             value={searchInput}
             placeholder="Search products"
-            onChange={(e) =>
-              setSearchInput(() => {
-                if (e.target.value === "") searchHandler();
-                return e.target.value;
-              })
-            }
+            onChange={(e) => setSearchInput(() => e.target.value)}
           />
           {searchInput !== "" && (
             <button onClick={clearSearch} class="bttn bttn-secondary">

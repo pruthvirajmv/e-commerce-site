@@ -5,8 +5,9 @@ import "./productListing.css";
 
 import sortReducer from "./sortReducer";
 import filterReducer from "./filterReducer";
-import ProductsDisplay from "./ProductsDisplay";
+import filterData from "./filterData";
 
+import ProductsDisplay from "./ProductsDisplay";
 import ProductsFilters from "./ProductsFilters";
 import ProductsSorting from "./ProductsSorting";
 import ProductsSearch from "./ProductsSearch";
@@ -34,24 +35,6 @@ export default function ProductListingPage({ setRoute }) {
     priceRange: 1000,
     searchProducts: ""
   });
-
-  function filterData(
-    productList,
-    { searchProducts, showOnlyInStock, showFastDelivery, priceRange }
-  ) {
-    return productList
-      .filter((product) =>
-        searchProducts !== ""
-          ? product.name.toLowerCase().includes(searchProducts.toLowerCase()) ||
-            product.adjective
-              .toLowerCase()
-              .includes(searchProducts.toLocaleLowerCase())
-          : true
-      )
-      .filter(({ price }) => price < priceRange)
-      .filter(({ inStock }) => (showOnlyInStock ? inStock : true))
-      .filter(({ fastDelivery }) => (showFastDelivery ? fastDelivery : true));
-  }
 
   const sortedData = sortData.products;
   const filteredData = filterData(sortedData, {
