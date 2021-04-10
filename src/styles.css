@@ -47,7 +47,7 @@ main {
 }
 
 .card {
-  width: 250px;
+  width: 15rem;
   row-gap: 0.5rem;
   padding: 0;
   padding-bottom: 1rem;

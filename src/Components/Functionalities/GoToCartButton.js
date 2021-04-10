@@ -5,7 +5,6 @@ export default function GoToCartButton({ setRoute }) {
     <>
       <button
         onClick={() => setRoute(routes.CartItems)}
-        style={{ marginLeft: "1rem" }}
         className="bttn bttn-secondary"
       >
         Go To Cart
