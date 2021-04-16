@@ -4,4 +4,9 @@
 
 ### here is the link for site preview [ecom](deploy-ecom-preview.netlify.app)
 
-##### more features and interactive pages will be added further
+##### upcoming features
+* backend implementation
+* homepage
+* Auth
+* data curation
+* address management
