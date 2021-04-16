@@ -1,0 +1,54 @@
+.cart-sum-card {
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  margin-top: 1rem;
+}
+
+.cart-sum-card > .card {
+  padding: 1rem 1rem;
+}
+
+.cart-sum-card .card:hover {
+  border: inherit;
+}
+
+.products-display-cart {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.3rem;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.card-side-txt {
+  padding-left: 0rem;
+  flex-wrap: wrap;
+}
+
+.products-display-cart .card-horizontal {
+  display: inherit;
+  width: 16rem;
+}
+
+.card-horizontal .card-dismiss {
+  right: inherit;
+  left: 0.2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .products-display-cart > .card {
+    flex-direction: row;
+  }
+
+  .products-display-cart .card-horizontal {
+    display: grid;
+    height: auto;
+    padding: 0;
+    width: 26rem;
+  }
+}
