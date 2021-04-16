@@ -1,6 +1,6 @@
 # e-commerce-site
 
-## Have created E-comm site covering the basice basic functionalities
+## Have created E-comm site covering the basic functionalities
 
 ### here is the link for site preview [ecom](deploy-ecom-preview.netlify.app)
 
