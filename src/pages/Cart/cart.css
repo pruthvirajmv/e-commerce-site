@@ -11,6 +11,10 @@
   padding: 1rem 1rem;
 }
 
+.cart-sum-card .card:hover {
+  border: inherit;
+}
+
 .products-display-cart {
   display: flex;
   flex-direction: column;
@@ -26,9 +30,9 @@
   flex-wrap: wrap;
 }
 
-.card-horizontal {
+.products-display-cart .card-horizontal {
   display: inherit;
-  width: 15rem;
+  width: 16rem;
 }
 
 .card-horizontal .card-dismiss {
@@ -40,12 +44,10 @@
   .products-display-cart > .card {
     flex-direction: row;
   }
-  .card-horizontal {
-    display: grid;
-  }
 
-  .card.card-horizontal {
-    height: max-content;
+  .products-display-cart .card-horizontal {
+    display: grid;
+    height: auto;
     padding: 0;
     width: 26rem;
   }

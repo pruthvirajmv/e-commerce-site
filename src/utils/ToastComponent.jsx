@@ -1,4 +1,4 @@
-import useCommerce from "../commerce-context/commerce-context";
+import useCommerce from "../context/commerce-context";
 
 export default function ToastComponent() {
   const { state } = useCommerce();

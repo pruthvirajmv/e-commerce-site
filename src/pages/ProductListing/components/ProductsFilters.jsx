@@ -1,4 +1,4 @@
-import PriceRangeSlider from "./PriceRangeSliderCompo/PriceRangeSlider";
+import PriceRangeSlider from "./PriceRangeSlider/PriceRangeSlider";
 
 export default function ProductFilters({
   filterDispatch,

@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from "react";
-import useCommerce from "../commerce-context/commerce-context";
-import { useReducer } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import "./productListing.css";
 
-import sortReducer from "./sortReducer";
-import filterReducer from "./filterReducer";
+import useCommerce from "../../context/commerce-context";
+
+import sortReducer from "./reducers/sortReducer";
+import filterReducer from "./reducers/filterReducer";
 import filterData from "./filterData";
 
-import ProductsDisplay from "./ProductsDisplay";
-import ProductsFilters from "./ProductsFilters";
-import ProductsSorting from "./ProductsSorting";
-import ProductsSearch from "./ProductsSearch";
+import ProductsDisplay from "./components/ProductsDisplay";
+import ProductsFilters from "./components/ProductsFilters";
+import ProductsSorting from "./components/ProductsSorting";
+import ProductsSearch from "./components/ProductsSearch";
 
-export default function ProductListingPage({ setRoute }) {
+export default function ProductListingPage() {
   const { state } = useCommerce();
+
   const [filterBttn, setFilterBttn] = useState("Hide");
 
   const [sortData, sortDispatch] = useReducer(sortReducer, {
@@ -44,8 +45,6 @@ export default function ProductListingPage({ setRoute }) {
     priceRange
   });
 
-  console.log({ sortedData, filteredData });
-
   return (
     <div>
       <div className="searchBar-container">
@@ -74,7 +73,7 @@ export default function ProductListingPage({ setRoute }) {
           <ProductsSorting dispatch={sortDispatch} />
         </div>
 
-        <ProductsDisplay filteredData={filteredData} setRoute={setRoute} />
+        <ProductsDisplay filteredData={filteredData} />
       </div>
     </div>
   );

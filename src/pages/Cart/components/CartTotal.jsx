@@ -1,10 +1,10 @@
-import "./cartPage.css";
+import "../cart.css";
 
 export default function CartTotal({ items, total }) {
   return (
     <>
       <div class="cart-sum-card">
-        <div class="card cart-sum-card">
+        <div class="card ">
           <div class="card-title">
             <h3>Cart Total</h3>
           </div>

@@ -1,4 +1,4 @@
-import { toastMsgs } from "../Functionalities/toastMsgs";
+import { toastMsgs } from "../utils/toastMsgs";
 
 export default function reducer(state, { type, payload }) {
   switch (type) {

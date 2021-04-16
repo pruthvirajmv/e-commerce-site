@@ -1,9 +1,12 @@
-import IncrementDecrementButton from "../Functionalities/IncrementDecrementButton";
-import GoToCartButton from "../Functionalities/GoToCartButton";
-import ToastComponent from "../Functionalities/ToastComponent";
-import useCommerce from "../commerce-context/commerce-context";
+import { Link } from "react-router-dom";
 
-export default function ProductsDisplay({ filteredData, setRoute }) {
+import useCommerce from "../../../context/commerce-context";
+
+import IncrementDecrementButton from "../../../utils/IncrementDecrementButton";
+import GoToCartButton from "../../../utils/GoToCartButton";
+import ToastComponent from "../../../utils/ToastComponent";
+
+export default function ProductsDisplay({ filteredData }) {
   const { state, dispatch } = useCommerce();
 
   return (
@@ -14,13 +17,16 @@ export default function ProductsDisplay({ filteredData, setRoute }) {
             key={item.id}
             class={item.inStock ? "card " : "card card-grey-out"}
           >
-            <span
-              style={{ display: item.inStock ? "none" : "inherit" }}
-              class="card-text"
-            >
-              OUT OF STOCK
-            </span>
-            <img class="card-img" src={item.image} alt="card"></img>
+            <Link to={`/products/${item.id}`}>
+              <span
+                style={{ display: item.inStock ? "none" : "inherit" }}
+                class="card-text"
+              >
+                OUT OF STOCK
+              </span>
+              <img class="card-img" src={item.image} alt="card"></img>
+            </Link>
+
             <div className="card-details">
               <span class="card-name">{item.name}</span>
               <span class="card-tagline">{item.adjective}</span>
@@ -34,14 +40,15 @@ export default function ProductsDisplay({ filteredData, setRoute }) {
               >
                 <i class="fa fa-heart" aria-hidden="true"></i>
               </button>
+
               <div class="card-links">
                 {item.quantity > 0 ? (
                   <>
                     <IncrementDecrementButton
                       clickHandler={dispatch}
                       value={item}
-                    />
-                    <GoToCartButton setRoute={setRoute} />
+                    />{" "}
+                    <GoToCartButton />{" "}
                   </>
                 ) : (
                   <button

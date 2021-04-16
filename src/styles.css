@@ -32,6 +32,10 @@ body {
   display: none;
 }
 
+.activePage {
+  color: white;
+}
+
 main {
   min-height: 80vh;
 }
@@ -87,10 +91,15 @@ main {
 
 .empty-msg {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   height: 80vh;
+}
+
+.empty-msg .bttn {
+  font-size: 1.2rem;
 }
 
 .notify {
@@ -110,6 +119,7 @@ main {
 
 .bttn-floating-action {
   color: black;
+  bottom: 3.5rem;
 }
 
 @media screen and (min-width: 768px) {

@@ -1,5 +1,6 @@
-import ToastComponent from "../Functionalities/ToastComponent";
-import useCommerce from "../commerce-context/commerce-context";
+import ToastComponent from "../../../utils/ToastComponent";
+import useCommerce from "../../../context/commerce-context";
+import { Link } from "react-router-dom";
 
 export default function ProductsDisplayCart({ cartItems }) {
   const { state, dispatch } = useCommerce();
@@ -10,7 +11,11 @@ export default function ProductsDisplayCart({ cartItems }) {
         {cartItems.map((item) => (
           <div>
             <div class="card card-horizontal">
-              <img class="card-img" src={item.image} alt="card"></img>
+              <div className="card-img">
+                <Link to={`/products/${item.id}`}>
+                  <img class="card-img" src={item.image} alt="card"></img>
+                </Link>
+              </div>
               <div class="card-side-txt">
                 <span class="card-name">{item.name}</span>
                 <span class="card-tagline">{item.adjective}</span>

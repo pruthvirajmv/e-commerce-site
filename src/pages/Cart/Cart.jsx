@@ -1,6 +1,9 @@
-import useCommerce from "../commerce-context/commerce-context";
-import CartTotal from "./CartTotal";
-import ProductsDisplayCart from "./ProductsDisplayCart";
+import React from "react";
+
+import useCommerce from "../../context/commerce-context";
+import CartTotal from "./components/CartTotal";
+import ProductsDisplayCart from "./components/ProductsDisplayCart";
+import EmptyPage from "../../utils/EmptyPage";
 
 export default function CartPage() {
   const { state } = useCommerce();
@@ -18,7 +21,7 @@ export default function CartPage() {
 
   return (
     <>
-      {cartItems.length === 0 && <div className="empty-msg">Cart is Empty</div>}
+      {cartItems.length === 0 && <EmptyPage page={"Cart"} />}
 
       {cartItems.length !== 0 && (
         <CartTotal items={cartItemsNumber} total={cartItemsTotal} />

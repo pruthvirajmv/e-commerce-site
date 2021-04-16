@@ -1,9 +1,12 @@
 import React from "react";
-import useCommerce from "../commerce-context/commerce-context";
-import GoToCartButton from "../Functionalities/GoToCartButton";
-import ToastComponent from "../Functionalities/ToastComponent";
+import { Link } from "react-router-dom";
 
-export default function WishListPage({ setRoute }) {
+import useCommerce from "../../context/commerce-context";
+import GoToCartButton from "../../utils/GoToCartButton";
+import ToastComponent from "../../utils/ToastComponent";
+import EmptyPage from "../../utils/EmptyPage";
+
+export default function WishListPage() {
   const { state, dispatch } = useCommerce();
 
   const wishListedItems = state.ProductsList.filter(
@@ -13,13 +16,15 @@ export default function WishListPage({ setRoute }) {
   function ProductsListWishListPage() {
     return (
       <>
-        {wishListedItems.length === 0 && (
-          <div className="empty-msg">Wishlist is Empty</div>
-        )}
+        {wishListedItems.length === 0 && <EmptyPage page={"Wishlist"} />}
         <div className="products-display">
           {wishListedItems.map((item) => (
             <div class="card">
-              <img class="card-img" src={item.image} alt="card"></img>
+              <div className="card-img">
+                <Link to={`/products/${item.id}`}>
+                  <img class="card-img" src={item.image} alt="card"></img>
+                </Link>
+              </div>
               <span class="card-name">{item.name}</span>
               <span class="card-tagline">{item.adjective}</span>
               <span class="card-price">Rs.{item.price}</span>
@@ -34,7 +39,7 @@ export default function WishListPage({ setRoute }) {
                 </button>
 
                 {item.quantity > 0 ? (
-                  <GoToCartButton setRoute={setRoute} />
+                  <GoToCartButton />
                 ) : (
                   <button
                     class="bttn bttn-primary"
