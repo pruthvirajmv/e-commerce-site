@@ -45,6 +45,10 @@ export default function ProductListingPage() {
     priceRange
   });
 
+  useEffect(() => {
+    document.title = "ecom | products";
+  }, []);
+
   return (
     <div>
       <div className="searchBar-container">

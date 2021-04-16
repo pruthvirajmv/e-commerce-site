@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import useCommerce from "../../context/commerce-context";
 import CartTotal from "./components/CartTotal";
@@ -18,6 +18,10 @@ export default function CartPage() {
     (orderSum, item) => (orderSum = orderSum + item.quantity * item.price),
     0
   );
+
+  useEffect(() => {
+    document.title = "ecom | cart";
+  }, []);
 
   return (
     <>

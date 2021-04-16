@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import "./productDetail.css";
@@ -15,6 +15,10 @@ export default function ProductDetailPage() {
   const { state, dispatch } = useCommerce();
 
   const product = state.ProductsList.find(({ id }) => id === productId);
+
+  useEffect(() => {
+    document.title = "ecom | product";
+  }, []);
 
   return (
     <>
