@@ -6,7 +6,7 @@ export default function filterData(
     .filter((product) =>
       searchProducts !== ""
         ? product.name.toLowerCase().includes(searchProducts.toLowerCase()) ||
-          product.adjective
+          product.brand
             .toLowerCase()
             .includes(searchProducts.toLocaleLowerCase())
         : true

@@ -3,13 +3,13 @@ import "./PriceRangeSlider.css";
 export default function PriceRangeSlider({ dispatch, price }) {
   return (
     <>
-      <div class="slidecontainer">
+      <div className="slidecontainer">
         <input
           type="range"
           min="1"
-          max="1000"
+          max="10000"
           value={price}
-          class="slider"
+          className="slider"
           onChange={(e) =>
             dispatch({
               type: "PRICE_RANGE",

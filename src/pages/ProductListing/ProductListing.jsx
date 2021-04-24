@@ -15,7 +15,7 @@ import ProductsSearch from "./components/ProductsSearch";
 export default function ProductListingPage() {
   const { state } = useCommerce();
 
-  const [filterBttn, setFilterBttn] = useState("Hide");
+  const [filterBttn, setFilterBttn] = useState(false);
 
   const [sortData, sortDispatch] = useReducer(sortReducer, {
     products: []
@@ -33,7 +33,7 @@ export default function ProductListingPage() {
   ] = useReducer(filterReducer, {
     showOnlyInStock: true,
     showFastDelivery: false,
-    priceRange: 1000,
+    priceRange: 10000,
     searchProducts: ""
   });
 
@@ -57,7 +57,7 @@ export default function ProductListingPage() {
         <button
           className="bttn bttn-secondary filter-sort-bttn"
           onClick={() =>
-            setFilterBttn((bttn) => (bttn === "Show" ? "Hide" : "Show"))
+            setFilterBttn((bttn) => !bttn)
           }
         >
           Filter/Sort
@@ -66,7 +66,7 @@ export default function ProductListingPage() {
       <div className="products-listing-layout">
         <div
           className="product-filters"
-          style={{ display: filterBttn === "Show" && "flex" }}
+          style={{ display: filterBttn === true && "flex" }}
         >
           <ProductsFilters
             filterDispatch={filterDispatch}

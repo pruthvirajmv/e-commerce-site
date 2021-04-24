@@ -7,17 +7,17 @@
 .search-bar {
   display: flex;
   width: 100%;
-  padding: 0.5rem 0rem;
+  padding: 0.3rem 0rem;
   margin: auto;
   border: 1px solid gray;
   justify-content: center;
   background-color: white;
+  align-items: center;
 }
 
 .input-bar {
   display: flex;
-  padding: 0.1rem 0.1rem;
-  width: 70%;
+  width: 80%;
 }
 
 .input-bar input {
@@ -55,11 +55,28 @@
 
 .products-display {
   margin: 1rem auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 18rem);
   flex-wrap: wrap;
-  /* width: 60%; */
+  flex: 1 1;
   justify-content: center;
-  gap: 0.25rem 0.5rem;
+  gap: 1rem 1rem;
+  max-width: 900px;
+}
+
+.products-display a{
+  display: flex;
+}
+
+.card {
+  width: 100%;
+  border-color: white;
+  border-style: none;
+  border-top-left-radius: 0;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 
 .card .card-details {
@@ -68,23 +85,44 @@
   row-gap: 0.6rem;
   flex-grow: 1;
   padding: 0 0.5rem;
-}
-
-.card {
-  border-color: white;
-  border-style: none;
-  border-top-left-radius: 0;
-}
-
-.card:hover {
-  border: 0.2px solid gray;
-  /* box-shadow: 5px 5px 5px 0px grey; */
+  align-items: flex-start;
 }
 
 .card-details .card-name {
-  width: 200px;
-  margin: auto;
+  flex-grow: 1;
 }
+
+.card-details .card-tagline {
+  flex-grow: 1;
+}
+
+.card-details .card-rating{
+  color: var(--primary);
+  font-size: small;
+  padding: 0.1rem 0.2rem;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.products-display  .card-price {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 0.5rem;
+}
+
+.products-display .card-links  {
+  width: 100%;
+}
+
+.products-display .bttn{
+  width: 100%;
+}
+
+.products-display a{
+  width: 100%;
+}
+
 
 /*  */
 
@@ -92,8 +130,12 @@
   opacity: 0.5;
 }
 
-.card .card-img {
+.products-display .card-img {
+  display: block;
+  max-width:20rem;
+  max-height:20rem;
   width: 100%;
+  height: auto;
 }
 
 .card .card-text {
@@ -103,10 +145,14 @@
   text-shadow: 0.1rem 0.1rem black;
 }
 
+.card .card-price{
+  flex-grow: 1;
+}
+
 @media screen and (min-width: 768px) {
   .search-bar {
     position: fixed;
-    top: 1rem;
+    top: 1.4rem;
     left: 22%;
     width: 50%;
     z-index: 2;
@@ -126,8 +172,4 @@
     display: none;
   }
 
-  /* .products-display {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  } */
 }

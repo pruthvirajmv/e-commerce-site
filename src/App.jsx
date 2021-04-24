@@ -10,9 +10,7 @@ import Cart from "./pages/Cart/Cart";
 import WishList from "./pages/WishList/WishList";
 
 import useCommerce from "./context/commerce-context";
-import AppNavBar from "./utils/AppNavBar";
-import Loader from "./utils/Loader/Loader";
-import FloatingActionBttn from "./utils/FloatingActionBttn";
+import{ AppNavBar, Loader, FloatingActionBttn }from "./components";
 
 export default function App() {
   const { isLoading } = useCommerce();
@@ -21,7 +19,7 @@ export default function App() {
     <div id="top" className="App">
       <AppNavBar />
 
-      {isLoading === "fetchStarted" && <Loader />}
+      {isLoading === true && <Loader />}
 
       <main>
         <Routes>
@@ -39,7 +37,7 @@ export default function App() {
         <h5>
           made with{" "}
           <span>
-            <i class="fab fa-react" aria-hidden="true"></i>
+            <i className="fab fa-react" aria-hidden="true"></i>
           </span>{" "}
           react by pruthvirajmv @neoGcamp
         </h5>

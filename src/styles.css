@@ -51,7 +51,6 @@ main {
 }
 
 .card {
-  width: 15rem;
   row-gap: 0.5rem;
   padding: 0;
   padding-bottom: 1rem;
@@ -87,6 +86,10 @@ main {
 .bttn {
   font-size: 0.9rem;
   min-width: max-content;
+}
+
+button:disabled{
+  opacity: 0.5;
 }
 
 .empty-msg {

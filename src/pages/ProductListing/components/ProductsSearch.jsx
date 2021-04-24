@@ -19,7 +19,7 @@ export default function ProductsSearch({ dispatch }) {
   return (
     <>
       <div className="search-bar">
-        <div class="input-bar">
+        <div className="input-bar">
           <input
             type="text"
             value={searchInput}
@@ -27,12 +27,12 @@ export default function ProductsSearch({ dispatch }) {
             onChange={(e) => setSearchInput(() => e.target.value)}
           />
           {searchInput !== "" && (
-            <button onClick={clearSearch} class="bttn bttn-secondary">
+            <button onClick={clearSearch} className="bttn bttn-secondary">
               X
             </button>
           )}
         </div>
-        <button class="bttn bttn-primary" onClick={searchHandler}>
+        <button className="bttn bttn-primary" onClick={searchHandler}>
           Search
         </button>
       </div>
