@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./productDetail.css";
 
 import useCommerce from "../../context/commerce-context";
 
 import { AddToCartBttn, IncrementDecrementBttn, GoToCartBttn, Toast, Loader} from "../../components";
-import {findProductIndex, addNewItemToCart, toggleWishlist} from "../../utils";
+import {findProductIndex, toggleWishlist} from "../../utils";
+import useAuth from "../../context/auth-context/AuthProvider";
 
 
-export default function ProductDetailPage() {
+export function ProductDetail() {
 const { productId } = useParams();
+const navigate = useNavigate();
 
+const {authState} = useAuth();
 const { state, dispatch, setIsLoading } = useCommerce();
 
 let product = state.ProductsList.find(({ _id }) => _id === productId);
+
+
 
 if(product === undefined){
 return(
@@ -55,7 +60,7 @@ return (
           <div>
           <button 
           className="bttn bttn-secondary" 
-          onClick={ () => toggleWishlist(dispatch, product, setIsLoading) }
+          onClick={ () => authState.isUserLoggedIn ? toggleWishlist(dispatch, item, setIsLoading) : navigate("/login") }
           >
            {findProductIndex(state.UserWishlist, product._id) >= 0 
            ?<span> <i className="fa fa-heart" aria-hidden="true" style={{color: "red"}}></i> Wishlisted </span>

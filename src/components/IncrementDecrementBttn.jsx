@@ -20,7 +20,7 @@ export function IncrementDecrementBttn( {product} ) {
           className="bttn bttn-secondary"
           onClick = {() => removeItemFromCart(dispatch, inCart.productId, setIsLoading)}
           >
-          <i class="fa fa-trash-o" aria-hidden="true"></i></button>}
+          <i className="fa fa-trash-o" aria-hidden="true"></i></button>}
         <span> {inCart.quantity} </span>
         <button
           onClick={ () => incrementItemCartQuantity(dispatch, inCart, setIsLoading) }

@@ -40,11 +40,11 @@ export default function CartTotal({ cartItems}) {
               <span>₹ {cartItemsTotal}</span>
             </section>
             <section>
-              <div>
                 <p>Cart Discount</p>
-                <span className="text-small text-gray" >(your savings)</span>
-              </div>
+              <div>
               <span>- ₹ {cartItemsTotalDiscount}</span>
+              <p className="text-small text-gray">(you saved)</p>
+              </div>
             </section>
             <section>
               <span>Delivery Charge</span>

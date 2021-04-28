@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function HomePage() {
+export function Home() {
   useEffect(() => {
     document.title = "ecom | home";
   }, []);

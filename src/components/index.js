@@ -7,3 +7,4 @@ export {IncrementDecrementBttn} from "./IncrementDecrementBttn";
 export {Toast} from "./Toast";
 export {Loader} from "./Loader/Loader";
 export {WishlistBttn} from "./WishlistBttn";
+export {Footer} from "./Footer";

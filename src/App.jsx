@@ -3,14 +3,11 @@ import { Routes, Route } from "react-router-dom";
 
 import "./styles.css";
 
-import Home from "./pages/Home/Home";
-import ProductListing from "./pages/ProductListing/ProductListing";
-import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import Cart from "./pages/Cart/Cart";
-import WishList from "./pages/WishList/WishList";
+import {Home, ProductListing, ProductDetail, Cart, WishList, Login, Profile, SignUp, ResetPassword} from "./pages";
 
 import useCommerce from "./context/commerce-context";
-import{ AppNavBar, Loader, FloatingActionBttn }from "./components";
+import{ AppNavBar, Loader, FloatingActionBttn, Footer }from "./components";
+import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 
 export default function App() {
   const { isLoading } = useCommerce();
@@ -26,22 +23,19 @@ export default function App() {
           <Route path="/" element={<ProductListing />} />
           <Route path="/products" element={<ProductListing />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
-          <Route path="/wishlist" element={<WishList />} />
-          <Route path="/cart" element={<Cart />} />
+          <PrivateRoute path="/wishlist" element={<WishList />} />
+          <PrivateRoute path="/cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/reset" element={<ResetPassword/>} />
         </Routes>
-
-        <FloatingActionBttn />
       </main>
 
-      <footer className="footer-nav nav-dark">
-        <h5>
-          made with{" "}
-          <span>
-            <i className="fab fa-react" aria-hidden="true"></i>
-          </span>{" "}
-          react by pruthvirajmv @neoGcamp
-        </h5>
-      </footer>
+      <FloatingActionBttn />
+
+      <Footer />
+
     </div>
   );
 }

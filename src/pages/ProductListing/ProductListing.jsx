@@ -12,7 +12,7 @@ import ProductsFilters from "./components/ProductsFilters";
 import ProductsSorting from "./components/ProductsSorting";
 import ProductsSearch from "./components/ProductsSearch";
 
-export default function ProductListingPage() {
+export function ProductListing() {
   const { state } = useCommerce();
 
   const [filterBttn, setFilterBttn] = useState(false);

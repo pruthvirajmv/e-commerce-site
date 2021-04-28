@@ -7,6 +7,7 @@ import {
   useEffect,
   useState
 } from "react";
+import useAuth from "./auth-context/AuthProvider";
 
 import reducer from "./commerce-reducer";
 
@@ -25,6 +26,9 @@ export function CommerceContextProvider({ children }) {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  const {authState} = useAuth();
+
+  //load products
   useEffect(() => {
     (async () => {
       try {
@@ -42,37 +46,51 @@ export function CommerceContextProvider({ children }) {
     })();
   }, []);
 
+  //load wishlist
     useEffect(()=>{
-    (async()=>{
-      try{
-        const {data : {success, wishlistItems}} = await axios.get("https://e-comm-backend.pruthviraj2.repl.co/wishlist/607c3d0604b8840e116d35fc")
-        if(success){
-          dispatch({type:"LOAD_USER_WISHLIST", payload: wishlistItems})
-        }
-      }
-      catch(err){
-        console.error(err)
-      } finally {
-        setIsLoading(false);
-      }
-    })()
-  },[])
+     if(authState.isUserLoggedIn){
+       (async()=>{
+          try{
+            setIsLoading(true);
+            const {data : {success, wishlistItems}} = await axios.get(`https://e-comm-backend.pruthviraj2.repl.co/wishlist/${(authState._id)}`)
+            if(success){
+              dispatch({type:"LOAD_USER_WISHLIST", payload: wishlistItems})
+            }
+          }
+          catch(err){
+            console.error(err)
+          } finally {
+            setIsLoading(false);
+          }
+        })()
+     }else{
+      dispatch({type:"LOAD_USER_WISHLIST", payload:[]})
+     }
+      
+  },[authState.isUserLoggedIn])
 
+  //load cart
   useEffect(()=>{
-    (async()=>{
-      try{
-        const {data : {success, cartItems}} = await axios.get("https://e-comm-backend.pruthviraj2.repl.co/cart/607c3d0604b8840e116d35fc")
-        if(success){
-          dispatch({type:"LOAD_USER_CART", payload:cartItems})
+    if(authState.isUserLoggedIn){
+      (async()=>{
+        console.log((authState._id))
+        try{
+          setIsLoading(true);
+          const {data : {success, cartItems}} = await axios.get(`https://e-comm-backend.pruthviraj2.repl.co/cart/${(authState._id)}`)
+          if(success){
+            dispatch({type:"LOAD_USER_CART", payload:cartItems})
+          }
         }
-      }
-      catch(err){
-        console.error(err)
-      } finally {
-        setIsLoading(false);
-      }
-    })()
-  },[])
+        catch(err){
+          console.error(err)
+        } finally {
+          setIsLoading(false);
+        }
+      })()
+    }else{
+      dispatch({type:"LOAD_USER_CART", payload:[]})
+    }
+  },[authState.isUserLoggedIn])
 
   useEffect(() => {
     let showToastTimer = setTimeout(

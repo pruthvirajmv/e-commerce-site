@@ -5,7 +5,7 @@ import CartTotal from "./components/CartTotal";
 import ProductsDisplayCart from "./components/ProductsDisplayCart";
 import { EmptyPage }from "../../components";
 
-export default function CartPage() {
+export function Cart() {
   const { state } = useCommerce();
 
   const cartItems = state.UserCart;

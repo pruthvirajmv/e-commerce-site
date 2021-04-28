@@ -10,7 +10,7 @@ return (
 <>
   <div className="products-display">
     {filteredData.map((item) => (
-    <ProductListingCard  product={item} />
+    <ProductListingCard key={item._id} product={item} />
     ))}
   </div>
   {state.Toast.status === "Show" &&

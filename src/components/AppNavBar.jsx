@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
+import useAuth from "../context/auth-context/AuthProvider";
 
 import useCommerce from "../context/commerce-context";
 
 export function AppNavBar() {
   const { state } = useCommerce();
+  const {authState} = useAuth();
 
   const itemsInWishList = state.UserWishlist;
 
@@ -12,13 +14,13 @@ export function AppNavBar() {
   return (
     <>
       <nav className="nav nav-dark">
-        <NavLink end activeClassName="activePage" to="/">
-          <h3>E-Commerce</h3>
-        </NavLink>
+      <div className="nav-main">
+        <h3><NavLink end activeClassName="activePage" to="/">
+            BaddyMart
+          </NavLink></h3>
+          <h3><NavLink activeClassName="activePage" to="/products">Shop</NavLink></h3>
+        </div>
         <ul className="nav-list">
-          <li>
-            <NavLink to="/products">Products</NavLink>
-          </li>
           <li>
             <div className="badge">
               <NavLink to="/wishlist" activeClassName="activePage">
@@ -36,6 +38,12 @@ export function AppNavBar() {
               <span className="badge badge-icon">{itemsInCart.length}</span>
             </div>
           </li>
+          <li>
+              <NavLink to={authState.isUserLoggedIn? "/profile" : "/login"} activeClassName="activePage">
+                <i className="fa fa-user " aria-hidden="true"></i>
+              </NavLink>
+          </li>
+
         </ul>
       </nav>
     </>
