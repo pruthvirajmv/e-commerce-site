@@ -11,6 +11,27 @@ body {
   min-height: 100vh;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+/* Navbar styles */
 .nav {
   position: sticky;
   top: 0;
@@ -30,10 +51,19 @@ body {
   font-size: 1.4rem;
 }
 
+.nav-icon-name{
+  display: none;
+  font-size: 1rem;
+}
+
 .nav .nav-main{
   display: flex;
-  flex-direction: row;
   column-gap: 0.5rem;
+  align-items: baseline;
+}
+
+.nav-brand{
+  font-size: 1.7rem;
 }
 
 .nav a:hover{
@@ -126,6 +156,8 @@ button:disabled{
   font-size: 1.2rem;
 }
 
+/* Footer styles */
+
 .footer-nav {
   position: relative;
   width: 100%;
@@ -141,9 +173,21 @@ button:disabled{
 
 .bttn-floating-action {
   color: black;
-  bottom: 6.5rem;
+  bottom: 2rem;
+  z-index: 2;
 }
 
 @media screen and (min-width: 768px) {
 
+  .nav-icon-name{
+    display: initial;
+  }
+
+  .badge-icon.wishlist {
+    left: 2.4rem;
+  }
+
+  .badge-icon.cart {
+    left: 1.2rem;
+  }
 }

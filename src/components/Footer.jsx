@@ -4,11 +4,7 @@ return(
 <>
     <footer className="footer-nav nav-dark ">
         <h5>
-            made with
-            <span>
-                <i className="fab fa-react" aria-hidden="true"></i>
-            </span>
-            react by pruthvirajmv @neoGcamp
+            made by pruthvirajmv @neoGcamp
         </h5>
         <ul className="nav-list" >
                     <li> <a href="https://github.com/pruthvirajmv" target="_blank">
@@ -23,6 +19,9 @@ return(
                         
                     </li>
         </ul>
+        <p className="text-gray text-small">
+            © 2021 BaddyMart
+        </p>
     </footer>
 </>
 )

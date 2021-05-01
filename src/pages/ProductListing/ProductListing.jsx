@@ -11,35 +11,54 @@ import ProductsDisplay from "./components/ProductsDisplay";
 import ProductsFilters from "./components/ProductsFilters";
 import ProductsSorting from "./components/ProductsSorting";
 import ProductsSearch from "./components/ProductsSearch";
+import ProductsBrandFilter from "./components/ProductsBrandFilter";
+import ProductsCategoryFilter from "./components/ProductsCategoryFilter";
+import { useLocation } from "react-router";
+
 
 export function ProductListing() {
+
   const { state } = useCommerce();
 
   const [filterBttn, setFilterBttn] = useState(false);
 
   const [sortData, sortDispatch] = useReducer(sortReducer, {
-    products: []
+    lowToHigh: false,
+    highToLow: false
   });
 
-  useEffect(
-    () =>
-      sortDispatch({ type: "DATA_FROM_CONTEXT", payload: state.ProductsList }),
-    [state]
-  );
-
   const [
-    { showOnlyInStock, showFastDelivery, priceRange, searchProducts },
+    { brandsFilter, categoriesFilter, showOnlyInStock, showFastDelivery, priceRange, searchProducts },
     filterDispatch
   ] = useReducer(filterReducer, {
+    brandsFilter: [],
+    categoriesFilter: [],
     showOnlyInStock: true,
     showFastDelivery: false,
     priceRange: 10000,
     searchProducts: ""
   });
 
-  const sortedData = sortData.products;
+  const getSortedData = (state, data) => {
+    if(state.lowToHigh){
+      return [...data].sort((a, b) => a.price - b.price)
+    }else if(state.highToLow){
+      return [...data].sort((a, b) => b.price - a.price)
+    }
+    return data;    
+  }
+
+  const brandQuery = new URLSearchParams(useLocation().search);
+  useEffect(() => {
+    brandQuery.get?.("brand") ? filterDispatch({type:"SET_BRAND_FILTERS", payload: brandQuery.get("brand")}) : ""
+  }
+  ,[])
+
+  const sortedData = getSortedData(sortData, state.ProductsList);
   const filteredData = filterData(sortedData, {
     searchProducts,
+    brandsFilter,
+    categoriesFilter,
     showOnlyInStock,
     showFastDelivery,
     priceRange
@@ -64,20 +83,47 @@ export function ProductListing() {
         </button>
       </div>
       <div className="products-listing-layout">
+          
         <div
           className="product-filters"
           style={{ display: filterBttn === true && "flex" }}
         >
+
+          <div className="product-filters-list">
+          <div className="filter-action-bttns">
+            <button 
+            onClick={() => setFilterBttn((bttn) => !bttn) }
+            className="bttn bttn-primary">Apply</button>
+            <button 
+            onClick={()=>
+            {
+              sortDispatch({type:"CLEAR_SORT"})
+              filterDispatch({type: "CLEAR_ALL"})}
+            }
+            className="bttn bttn-secondary">Clear All</button>
+          </div>
           <ProductsFilters
             filterDispatch={filterDispatch}
             showFastDelivery={showFastDelivery}
             showOnlyInStock={showOnlyInStock}
             priceRange={priceRange}
           />
-          <ProductsSorting dispatch={sortDispatch} />
+          <ProductsSorting 
+          data ={sortData}
+          dispatch={sortDispatch} />
+          <ProductsBrandFilter
+            filterDispatch={filterDispatch}
+            brandsFilter={brandsFilter}
+          />
+          <ProductsCategoryFilter
+            filterDispatch={filterDispatch}
+            categoriesFilter={categoriesFilter}
+          />
+          </div>
         </div>
 
-        <ProductsDisplay filteredData={filteredData} />
+           <ProductsDisplay filteredData={filteredData} />
+
       </div>
     </div>
   );

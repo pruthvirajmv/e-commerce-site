@@ -18,23 +18,17 @@ export default function ProductsSearch({ dispatch }) {
 
   return (
     <>
-      <div className="search-bar">
-        <div className="input-bar">
+      <div className="search-bar input input-primary">
           <input
+            className="input"
             type="text"
             value={searchInput}
             placeholder="Search products"
             onChange={(e) => setSearchInput(() => e.target.value)}
           />
           {searchInput !== "" && (
-            <button onClick={clearSearch} className="bttn bttn-secondary">
-              X
-            </button>
-          )}
-        </div>
-        <button className="bttn bttn-primary" onClick={searchHandler}>
-          Search
-        </button>
+            <i onClick={clearSearch} class="fa fa-times" aria-hidden="true"></i>          )}
+        <i onClick={searchHandler} class="fa fa-search" aria-hidden="true"></i>
       </div>
     </>
   );

@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 
-
 import "./login.css"
 
 import useInput from "./Input";
@@ -20,6 +19,8 @@ export function Login(){
     
     const user = useInput("");
     const userPassword = useInput("");
+
+    const [showPassword, setShowPassword] = useState(false);
 
     const [errorMsg, setErrorMsg] = useState("")
 
@@ -49,11 +50,17 @@ export function Login(){
                         Password 
                     </label>
                     <div className="input input-primary">
-                    <input className="input" type="password" {...userPassword}
-                    placeholder="enter password"
-                    minLength="8"
-                     required></input>
-                     <span><i className="fa fa-eye-slash" aria-hidden="true"></i></span>
+                    <input 
+                        className="input" 
+                        type={showPassword? "text" :"password"}
+                        {...userPassword}
+                        placeholder="enter password"
+                        minLength="8"
+                        required
+                     ></input>
+                     <span><i 
+                        onClick={() => setShowPassword(prev => !prev)}
+                        className={showPassword? "fa fa-eye" :"fa fa-eye-slash"} aria-hidden="true"></i></span>
                     </div>                    
                 </section>
                 <button type="submit" className="bttn bttn-primary login" >Login</button>

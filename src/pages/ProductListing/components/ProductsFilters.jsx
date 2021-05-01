@@ -10,27 +10,29 @@ export default function ProductFilters({
     <>
       <fieldset>
         <legend> Filters </legend>
-        <label>
+        <label className="filter-label">
           <input
             type="checkbox"
             checked={!showOnlyInStock}
+            className="filter-label-input"
             onChange={() => filterDispatch({ type: "TOGGLE_INVENTORY" })}
           />
           Include Out of Stock
         </label>
-        <label>
+        <label className="filter-label">
           <input
             type="checkbox"
             checked={showFastDelivery}
+            className="filter-label-input"
             onChange={() => filterDispatch({ type: "TOGGLE_DELIVERY" })}
           />
           Fast Delivery Only
         </label>
-
-        <PriceRangeSlider dispatch={filterDispatch} price={priceRange} />
-        <label>
+        <div className="filter-label">
+          <PriceRangeSlider  dispatch={filterDispatch} price={priceRange} />
+        </div>
+        <label className="filter-label">
           <button
-            style={{ fontSize: "1rem" }}
             className="bttn bttn-secondary"
             onClick={() => filterDispatch({ type: "CLEAR_FILTERS" })}
           >
