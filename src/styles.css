@@ -74,6 +74,20 @@ body {
   color: white !important ;
 }
 
+.badge{
+  font-size: 1.4rem;
+}
+
+.badge.badge-icon {
+  left: 0.8rem;
+  top: -0.5rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  height: 1.2rem;
+  min-width: 1.2rem;
+  padding: 0;
+}
+
 main {
   min-height: calc(80vh - 7rem);
 }
@@ -109,20 +123,6 @@ main {
   height: 2rem;
   border-radius: 50%;
   padding-top: 0.2rem;
-}
-
-.badge{
-  font-size: 1.4rem;
-}
-
-.badge.badge-icon {
-  left: 0.8rem;
-  top: -0.5rem;
-  font-size: 1rem;
-  border-radius: 50%;
-  height: 1.2rem;
-  min-width: 1.2rem;
-  padding: 0;
 }
 
 .bttn {
