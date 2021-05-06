@@ -1,12 +1,16 @@
-import { IncrementDecrementBttn, WishlistBttn } from "../../../components";
-import useCommerce from "../../../context/commerce-context";
 import { Link } from "react-router-dom";
+
+import useCommerce from "../../../context/commerce-context";
+import useAuth from "../../../context/auth-context/AuthProvider";
+
+import { IncrementDecrementBttn, WishlistBttn } from "../../../components";
 import { removeItemFromCart, moveToWishlistFromCart } from "../../../utils";
 
 
 export default function ProductCartCard({product, quantity}){
 
 const { state, dispatch, setIsLoading } = useCommerce();
+const { authState: { _id } } = useAuth();
 
 return(
 <div className="card card-horizontal">
@@ -32,12 +36,12 @@ return(
             <IncrementDecrementBttn product={product} />
         </div>
         <div className="card-links">
-                <button onClick={()=> removeItemFromCart(dispatch, product, setIsLoading)}
+                <button onClick={()=> removeItemFromCart(_id, dispatch, product, setIsLoading)}
                     className="bttn bttn-secondary"
                     >
                     Remove
                 </button>
-                <button className="bttn bttn-primary" onClick={()=> moveToWishlistFromCart(state, dispatch, product,
+                <button className="bttn bttn-primary" onClick={()=> moveToWishlistFromCart(_id, state, dispatch, product,
                     setIsLoading) }
                     >
                     MoveToWishlist

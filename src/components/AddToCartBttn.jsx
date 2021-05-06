@@ -11,7 +11,7 @@ export function AddToCartBttn({product}) {
     const { dispatch, setIsLoading } = useCommerce();
 
     const onClickHandler = () =>{
-        authState.isUserLoggedIn ? addNewItemToCart(dispatch, product, setIsLoading) : navigate("/login")
+        authState.isUserLoggedIn ? addNewItemToCart(authState._id, dispatch, product, setIsLoading) : navigate("/login")
     }
 
 return(

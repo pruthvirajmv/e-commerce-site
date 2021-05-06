@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 
 import useCommerce from "../../context/commerce-context";
+import useAuth from "../../context/auth-context/AuthProvider";
+
 import {GoToCartBttn} from "../../components";
 import { toggleWishlist, addNewItemToCart} from "../../utils";
 
@@ -8,6 +10,7 @@ import { toggleWishlist, addNewItemToCart} from "../../utils";
 export default function ProductWishlistCard({product}){
 
     const { state, dispatch, setIsLoading } = useCommerce();
+    const { authState: { _id } } = useAuth();
 
 return(
 <div key={product._id} className={product.inStock ? "card " : "card card-grey-out" }>
@@ -31,14 +34,14 @@ return(
             </span>
         </div>
         <div className="card-links">
-            <button className="card-dismiss" onClick={()=> toggleWishlist(dispatch, product, setIsLoading) }
+            <button className="card-dismiss" onClick={()=> toggleWishlist(_id, dispatch, product, setIsLoading) }
                 >
                 X
             </button>
             { state.UserCart.some((item) => item.productId._id === (product._id) ) ? (
             <GoToCartBttn />
             ) : (
-            <button className="bttn bttn-primary" onClick={()=> addNewItemToCart(dispatch, product, setIsLoading) }
+            <button className="bttn bttn-primary" onClick={()=> addNewItemToCart(_id, dispatch, product, setIsLoading) }
                 >
                 Add To Cart
             </button>

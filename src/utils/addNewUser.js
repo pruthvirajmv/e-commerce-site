@@ -1,11 +1,15 @@
 import axios from "axios";
 
+import {backendServer} from "./index";
+
+
 export const addNewUser = async (name, email, password, authDispatch, setIsLoading) => {
+    const { backendApi } = backendServer;
     try {
         setIsLoading(true);
         const {status, data:{addedUser} } = await axios({
             method: "POST",
-            url: "https://e-comm-backend.pruthviraj2.repl.co/users",
+            url: `${backendApi}/users`,
             headers: { username: name ,email: email, password: password }
         });
         console.log(status);

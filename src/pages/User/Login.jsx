@@ -41,7 +41,7 @@ export function Login(){
                         User Name
                     </label>
                     <input className="input input-primary" type="text" {...user} 
-                    placeholder="enter username/email"
+                    placeholder="enter username"
                     required></input>
                 </section>
 

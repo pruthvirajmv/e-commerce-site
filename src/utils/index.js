@@ -8,4 +8,5 @@ export {moveToWishlistFromCart} from "./moveToWishlistFromCart";
 export {addNewUser} from "./addNewUser";
 export {logInExistingUser} from "./logInExistingUser";
 export {logOutUser} from "./logOutUser";
-export {forgotResetPassword} from "./forgotResetPassword"
+export {forgotResetPassword} from "./forgotResetPassword";
+export { backendServer } from "./backendServer"

@@ -14,7 +14,7 @@ export function WishlistBttn({item}){
     const isWishlisted = state.UserWishlist.find(({productId}) => productId._id === item._id)
 
     const onClickHandler = () =>{
-        authState.isUserLoggedIn ? toggleWishlist(dispatch, item, setIsLoading) : navigate("/login")
+        authState.isUserLoggedIn ? toggleWishlist(authState._id, dispatch, item, setIsLoading) : navigate("/login")
     }
 
 return(

@@ -60,7 +60,7 @@ return (
           <div>
           <button 
           className="bttn bttn-secondary" 
-          onClick={ () => authState.isUserLoggedIn ? toggleWishlist(dispatch, item, setIsLoading) : navigate("/login") }
+          onClick={ () => authState.isUserLoggedIn ? toggleWishlist(authState._id, dispatch, item, setIsLoading) : navigate("/login") }
           >
            {findProductIndex(state.UserWishlist, product._id) >= 0 
            ?<span> <i className="fa fa-heart" aria-hidden="true" style={{color: "red"}}></i> Wishlisted </span>

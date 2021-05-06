@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useReducer} from "react";
 import axios from "axios";
+import { backendServer } from "../../utils"
 
 import authReducer from "./authReducer"
 
@@ -16,6 +17,8 @@ export function AuthContextProvider({children}){
             isUserLoggedIn : false
         })
 
+    const { backendApi } = backendServer;
+
     //load user
     useEffect(()=>{
         const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
@@ -23,7 +26,7 @@ export function AuthContextProvider({children}){
             loginHistory.isUserLoggedIn &&
              (async()=>{
                 try{
-                  const {data : {success, user}} = await axios.get(`https://e-comm-backend.pruthviraj2.repl.co/users/${(loginHistory._id)}`)
+                  const {data : {success, user}} = await axios.get(`${backendApi}/users/${(loginHistory._id)}`)
                   if(success){
                     authDispatch({type:"LOAD_USER", payload: user})
                 }

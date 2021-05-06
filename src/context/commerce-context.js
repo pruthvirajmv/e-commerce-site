@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { backendServer } from "../utils"
+
 import {
   createContext,
   useContext,
@@ -28,12 +30,14 @@ export function CommerceContextProvider({ children }) {
 
   const {authState} = useAuth();
 
+  const { backendApi } = backendServer;
+
   //load products
   useEffect(() => {
     (async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get("https://e-comm-backend.pruthviraj2.repl.co/products");
+        const response = await axios.get(`${backendApi}/products`);
         dispatch({ type: "LOAD_PRODUCTS", payload: response.data.products });
       } catch (error) {
         console.error("error", error.message);
@@ -52,7 +56,7 @@ export function CommerceContextProvider({ children }) {
        (async()=>{
           try{
             setIsLoading(true);
-            const {data : {success, wishlistItems}} = await axios.get(`https://e-comm-backend.pruthviraj2.repl.co/wishlist/${(authState._id)}`)
+            const {data : {success, wishlistItems}} = await axios.get(`${backendApi}/wishlist/${(authState._id)}`)
             if(success){
               dispatch({type:"LOAD_USER_WISHLIST", payload: wishlistItems})
             }
@@ -73,10 +77,9 @@ export function CommerceContextProvider({ children }) {
   useEffect(()=>{
     if(authState.isUserLoggedIn){
       (async()=>{
-        console.log((authState._id))
         try{
           setIsLoading(true);
-          const {data : {success, cartItems}} = await axios.get(`https://e-comm-backend.pruthviraj2.repl.co/cart/${(authState._id)}`)
+          const {data : {success, cartItems}} = await axios.get(`${backendApi}/cart/${(authState._id)}`)
           if(success){
             dispatch({type:"LOAD_USER_CART", payload:cartItems})
           }

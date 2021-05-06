@@ -1,12 +1,13 @@
 import axios from "axios";
+import {backendServer} from "./index";
 
 export const logOutUser = async (userId, dispatch, authDispatch, setIsLoading) => {
-    console.log(userId)
+    const { backendApi } = backendServer;
     try {
         setIsLoading(true);
         const {data:{success}} = await axios({
             method: "POST",
-            url: `https://e-comm-backend.pruthviraj2.repl.co/users/${userId}/logout`,
+            url: `${backendApi}/users/${userId}/logout`,
         });
         if(success){
             authDispatch({type: "LOGOUT_USER", payload: []});      

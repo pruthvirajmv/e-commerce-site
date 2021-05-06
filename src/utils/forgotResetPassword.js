@@ -1,11 +1,14 @@
 import axios from "axios";
 
+import {backendServer} from "./index";
+
 export const forgotResetPassword = async (email, password, setErrorMsg, setIsLoading, authDispatch, dispatch, navigateTo) => {
+    const { backendApi } = backendServer;
     try{
         setIsLoading(true);
         const {data: {success, user}} = await axios({
             method : "POST",
-            url: "https://e-comm-backend.pruthviraj2.repl.co/users/resetpassword",
+            url: `${backendApi}/users/resetpassword`,
             headers: { email: email, password: password }
         })
         if(success) {

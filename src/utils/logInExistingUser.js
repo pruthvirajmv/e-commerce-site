@@ -1,11 +1,13 @@
 import axios from "axios";
+import {backendServer} from "./index";
 
 export const logInExistingUser = async (name, password, dispatch, authDispatch, setIsLoading, setErrorMsg, navigateTo, state) => {
+    const { backendApi } = backendServer;
     try {
         setIsLoading(true);
         const {status, data:{user} } = await axios({
             method: "POST",
-            url: "https://e-comm-backend.pruthviraj2.repl.co/users/login",
+            url: `${backendApi}/users/login`,
             headers: { username: name , password: password }
         });
         if(status === 200){

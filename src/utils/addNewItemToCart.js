@@ -1,11 +1,12 @@
 import axios from "axios";
+import {backendServer} from "./index";
 
 
-export const addNewItemToCart = async (dispatch, item, setIsLoading) => {
-
+export const addNewItemToCart = async (userId, dispatch, item, setIsLoading) => {
+    const { backendApi } = backendServer;
         try{
             setIsLoading(() => true);
-            const {data:{success, cartItems}} = await axios.post("https://e-comm-backend.pruthviraj2.repl.co/cart/607c3d0604b8840e116d35fc", { id: item._id, qty: 1 });
+            const {data:{success, cartItems}} = await axios.post(`${backendApi}/cart/${userId}`, { id: item._id, qty: 1 });
             dispatch({ type: "LOAD_USER_CART", payload: cartItems });
             if(success){
             dispatch({ type: "SHOW_TOAST", payload: `${item.name} added to cart` });
