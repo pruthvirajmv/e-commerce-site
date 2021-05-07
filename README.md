@@ -1,6 +1,6 @@
 # e-commerce-site
 
-## Have created E-comm site covering the basic functionalities and backend integration
+## Have created E-comm site covering the basic functionalities and backend integration from [repo](https://github.com/pruthvirajmv/e-commerce-site-backend/tree/development)
 
 ### here is the link for site preview [ecom](https://baddymart.netlify.app)
 
