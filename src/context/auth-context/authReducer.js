@@ -1,6 +1,5 @@
 
 export default function authReducer(state, { type, payload }) {
-    console.log(state, type, payload)
 
     switch(type){
 

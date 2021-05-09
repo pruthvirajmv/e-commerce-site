@@ -1,5 +1,4 @@
 export default function sortReducer(state, action) {
-  console.log(state, action)
   switch (action.type) {
     // Sort products
     case "LOW_TO_HIGH":

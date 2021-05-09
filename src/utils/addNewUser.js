@@ -12,8 +12,6 @@ export const addNewUser = async (name, email, password, authDispatch, setIsLoadi
             url: `${backendApi}/users`,
             headers: { username: name ,email: email, password: password }
         });
-        console.log(status);
-        console.log(addedUser);
         if(status === 200){
             authDispatch({type: "LOAD_USER", payload: addedUser})
             localStorage?.setItem("loginSession", JSON.stringify({ _id: addedUser._id, isUserLoggedIn: addedUser.isUserLoggedIn }))

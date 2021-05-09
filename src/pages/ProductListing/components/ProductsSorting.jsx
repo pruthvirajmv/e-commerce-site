@@ -2,7 +2,6 @@ import useCommerce from "../../../context/commerce-context";
 
 export default function ProductsSorting({ dispatch, data }) {
   const { state } = useCommerce();
-  console.log(state.ProductsList, "data")
 
   return (
     <>
