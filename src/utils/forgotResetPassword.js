@@ -15,7 +15,7 @@ export const forgotResetPassword = async (
    try {
       setIsLoading(true);
       const {
-         data: { success, user },
+         data: { success, user, token },
       } = await axios({
          method: "POST",
          url: `${backendApi}/user/resetpassword`,
@@ -25,7 +25,7 @@ export const forgotResetPassword = async (
          authDispatch({ type: "LOAD_USER", payload: user });
          localStorage?.setItem(
             "loginSession",
-            JSON.stringify({ _id: user._id, isUserLoggedIn: user.isUserLoggedIn })
+            JSON.stringify({ tooken, isUserLoggedIn: user.isUserLoggedIn })
          );
          dispatch({ type: "SHOW_TOAST", payload: "Password Reset Successful" });
          setIsLoading(false);

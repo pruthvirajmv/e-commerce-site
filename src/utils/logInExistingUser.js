@@ -24,10 +24,7 @@ export const logInExistingUser = async (
       });
       if (status === 200) {
          authDispatch({ type: "LOAD_USER", payload: user });
-         localStorage?.setItem(
-            "loginSession",
-            JSON.stringify({ token, isUserLoggedIn: user.isUserLoggedIn })
-         );
+         localStorage?.setItem("loginSession", JSON.stringify({ token, isUserLoggedIn: true }));
          dispatch({ type: "SHOW_TOAST", payload: "Login Successful" });
          navigateTo(state?.form ? state : "/products");
       }

@@ -17,7 +17,7 @@ export function Profile() {
 
    const logOutSubmitHandler = (e) => {
       e.preventDefault();
-      logOutUser(authState._id, dispatch, authDispatch, setIsLoading);
+      logOutUser(dispatch, authDispatch, setIsLoading);
       navigate("/products");
    };
 
