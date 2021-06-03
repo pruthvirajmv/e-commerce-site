@@ -1,11 +1,11 @@
-import useCommerce from "../context/commerce-context";
+import { useCommerce } from "../context";
 
 export function Toast() {
-  const { state } = useCommerce();
+   const { state } = useCommerce();
 
-  return (
-    <div className="notify">
-      <p>{state.Toast.msg}</p>
-    </div>
-  );
+   return (
+      <div className="notify">
+         <p>{state.Toast.msg}</p>
+      </div>
+   );
 }

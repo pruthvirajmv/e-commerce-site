@@ -1,41 +1,40 @@
-import PriceRangeSlider from "./PriceRangeSlider/PriceRangeSlider";
+import PriceRangeSlider from './PriceRangeSlider/PriceRangeSlider';
 
 export default function ProductFilters({
   filterDispatch,
   showOnlyInStock,
   showFastDelivery,
-  priceRange
+  priceRange,
 }) {
   return (
     <>
       <fieldset>
         <legend> Filters </legend>
-        <label className="filter-label">
+        <label className='filter-label'>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={!showOnlyInStock}
-            className="filter-label-input"
-            onChange={() => filterDispatch({ type: "TOGGLE_INVENTORY" })}
+            className='filter-label-input'
+            onChange={() => filterDispatch({ type: 'TOGGLE_INVENTORY' })}
           />
           Include Out of Stock
         </label>
-        <label className="filter-label">
+        <label className='filter-label'>
           <input
-            type="checkbox"
+            type='checkbox'
             checked={showFastDelivery}
-            className="filter-label-input"
-            onChange={() => filterDispatch({ type: "TOGGLE_DELIVERY" })}
+            className='filter-label-input'
+            onChange={() => filterDispatch({ type: 'TOGGLE_DELIVERY' })}
           />
           Fast Delivery Only
         </label>
-        <div className="filter-label">
-          <PriceRangeSlider  dispatch={filterDispatch} price={priceRange} />
+        <div className='filter-label'>
+          <PriceRangeSlider dispatch={filterDispatch} price={priceRange} />
         </div>
-        <label className="filter-label">
+        <label className='filter-label'>
           <button
-            className="bttn bttn-secondary"
-            onClick={() => filterDispatch({ type: "CLEAR_FILTERS" })}
-          >
+            className='bttn bttn-secondary'
+            onClick={() => filterDispatch({ type: 'CLEAR_FILTERS' })}>
             Clear
           </button>
         </label>

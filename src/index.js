@@ -4,19 +4,18 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import App from "./App";
 import { AuthContextProvider } from "./context/auth-context/AuthProvider";
-import { CommerceContextProvider } from "./context/commerce-context";
-
+import { CommerceContextProvider } from "./context/commmerce-context/CommerceProvider";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <StrictMode>
-    <AuthContextProvider>
-      <Router>
-        <CommerceContextProvider>
-          <App />
-        </CommerceContextProvider>
-      </Router>
-    </AuthContextProvider>
-  </StrictMode>,
-  rootElement
+   <StrictMode>
+      <AuthContextProvider>
+         <Router>
+            <CommerceContextProvider>
+               <App />
+            </CommerceContextProvider>
+         </Router>
+      </AuthContextProvider>
+   </StrictMode>,
+   rootElement
 );

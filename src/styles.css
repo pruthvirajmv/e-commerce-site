@@ -1,5 +1,5 @@
-@import url("https://dev-suit.netlify.app/CSS/main.css");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url('https://dev-suit.netlify.app/CSS/main.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .App {
   font-family: sans-serif;
@@ -18,17 +18,17 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 /* Navbar styles */
@@ -51,22 +51,22 @@ body {
   font-size: 1.4rem;
 }
 
-.nav-icon-name{
+.nav-icon-name {
   display: none;
   font-size: 1rem;
 }
 
-.nav .nav-main{
+.nav .nav-main {
   display: flex;
   column-gap: 0.5rem;
   align-items: baseline;
 }
 
-.nav-brand{
+.nav-brand {
   font-size: 1.7rem;
 }
 
-.nav a:hover{
+.nav a:hover {
   color: white;
 }
 
@@ -74,7 +74,7 @@ body {
   color: white !important ;
 }
 
-.badge{
+.badge {
   font-size: 1.4rem;
 }
 
@@ -130,7 +130,7 @@ main {
   min-width: max-content;
 }
 
-button:disabled{
+button:disabled {
   opacity: 0.5;
 }
 
@@ -161,11 +161,11 @@ button:disabled{
 .footer-nav {
   position: relative;
   width: 100%;
-  padding: 1rem 1rem ;
+  padding: 1rem 1rem;
   margin-top: 2rem;
 }
 
-.footer-nav .nav-list{
+.footer-nav .nav-list {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -178,8 +178,7 @@ button:disabled{
 }
 
 @media screen and (min-width: 768px) {
-
-  .nav-icon-name{
+  .nav-icon-name {
     display: initial;
   }
 
