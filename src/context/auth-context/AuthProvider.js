@@ -28,7 +28,6 @@ export function AuthContextProvider({ children }) {
    //load user
    useEffect(() => {
       const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
-      console.log(loginHistory);
       if (loginHistory) {
          loginHistory.isUserLoggedIn &&
             (async () => {

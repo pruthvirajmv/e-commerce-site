@@ -23,10 +23,7 @@ export const forgotResetPassword = async (
       });
       if (success) {
          authDispatch({ type: "LOAD_USER", payload: user });
-         localStorage?.setItem(
-            "loginSession",
-            JSON.stringify({ tooken, isUserLoggedIn: user.isUserLoggedIn })
-         );
+         localStorage?.setItem("loginSession", JSON.stringify({ token, isUserLoggedIn: true }));
          dispatch({ type: "SHOW_TOAST", payload: "Password Reset Successful" });
          setIsLoading(false);
          navigateTo("/profile");

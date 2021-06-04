@@ -1,5 +1,4 @@
 export default function authReducer(state, { type, payload }) {
-   console.log(type);
    switch (type) {
       case "LOAD_USER":
          return {

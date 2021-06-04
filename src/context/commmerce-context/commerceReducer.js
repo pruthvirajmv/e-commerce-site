@@ -1,5 +1,4 @@
 export default function reducer(state, { type, payload }) {
-   console.log(type);
    switch (type) {
       // Loading on page
       case "LOAD_PRODUCTS":
