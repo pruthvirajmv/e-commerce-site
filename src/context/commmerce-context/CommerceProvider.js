@@ -51,7 +51,7 @@ export function CommerceContextProvider({ children }) {
                setIsLoading(true);
                const {
                   data: { success, wishlistItems },
-               } = await axios.get(`${backendApi}/wishlist/${authState._id}`);
+               } = await axios.get(`${backendApi}/wishlist`);
                if (success) {
                   dispatch({ type: "LOAD_USER_WISHLIST", payload: wishlistItems });
                }
@@ -74,7 +74,7 @@ export function CommerceContextProvider({ children }) {
                setIsLoading(true);
                const {
                   data: { success, cartItems },
-               } = await axios.get(`${backendApi}/cart/${authState._id}`);
+               } = await axios.get(`${backendApi}/cart`);
                if (success) {
                   dispatch({ type: "LOAD_USER_CART", payload: cartItems });
                }

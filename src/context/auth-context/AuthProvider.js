@@ -7,13 +7,23 @@ import authReducer from "./authReducer";
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-   const [authState, authDispatch] = useReducer(authReducer, {
+   const initialAuthState = {
       userName: "",
       email: "",
       _id: "",
       isUserLoggedIn: false,
       token: "",
-   });
+   };
+
+   const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
+
+   if (loginHistory.token) {
+      setupAuthHeaderForServiceCalls(loginHistory.token);
+      initialAuthState.isUserLoggedIn = loginHistory.isUserLoggedIn;
+      initialAuthState.token = loginHistory.token;
+   }
+
+   const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
    const { backendApi } = backendServer;
 
@@ -27,12 +37,10 @@ export function AuthContextProvider({ children }) {
 
    //load user
    useEffect(() => {
-      const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
       if (loginHistory) {
-         loginHistory.isUserLoggedIn &&
+         loginHistory.token &&
             (async () => {
                try {
-                  setupAuthHeaderForServiceCalls(loginHistory.token);
                   const {
                      data: { success, user },
                   } = await axios({

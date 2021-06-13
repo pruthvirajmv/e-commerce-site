@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import useInput from "./Input";
 
-import { addNewUser } from "../../utils";
+import { addNewUser } from "../../utils/server-requests";
 import { useCommerce, useAuth } from "../../context";
 
 export function SignUp() {

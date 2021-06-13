@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useCommerce, useAuth } from "../../../context";
 
 import { IncrementDecrementBttn, WishlistBttn } from "../../../components";
-import { removeItemFromCart, moveToWishlistFromCart } from "../../../utils";
+import { removeItemFromCart, moveToWishlistFromCart } from "../../../utils/server-requests";
 
 export default function ProductCartCard({ product, quantity }) {
    const { state, dispatch, setIsLoading } = useCommerce();
@@ -44,15 +44,13 @@ export default function ProductCartCard({ product, quantity }) {
             </div>
             <div className="card-links">
                <button
-                  onClick={() => removeItemFromCart(_id, dispatch, product, setIsLoading)}
+                  onClick={() => removeItemFromCart(dispatch, product, setIsLoading)}
                   className="bttn bttn-secondary">
                   Remove
                </button>
                <button
                   className="bttn bttn-primary"
-                  onClick={() =>
-                     moveToWishlistFromCart(_id, state, dispatch, product, setIsLoading)
-                  }>
+                  onClick={() => moveToWishlistFromCart(state, dispatch, product, setIsLoading)}>
                   MoveToWishlist
                </button>
             </div>

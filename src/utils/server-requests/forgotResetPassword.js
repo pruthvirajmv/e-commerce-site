@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { backendServer } from "./index";
+import { backendServer } from "../index";
 
 export const forgotResetPassword = async (
    email,

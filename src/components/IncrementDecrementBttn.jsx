@@ -1,5 +1,9 @@
 import { useAuth, useCommerce } from "../context";
-import { incrementItemCartQuantity, decrementItemCartQuantity, removeItemFromCart } from "../utils";
+import {
+   incrementItemCartQuantity,
+   decrementItemCartQuantity,
+   removeItemFromCart,
+} from "../utils/server-requests";
 
 export function IncrementDecrementBttn({ product }) {
    const { state, dispatch, setIsLoading } = useCommerce();
@@ -14,20 +18,20 @@ export function IncrementDecrementBttn({ product }) {
          <div>
             {inCart.quantity > 1 ? (
                <button
-                  onClick={() => decrementItemCartQuantity(_id, dispatch, inCart, setIsLoading)}
+                  onClick={() => decrementItemCartQuantity(dispatch, inCart, setIsLoading)}
                   className="bttn bttn-primary">
                   -
                </button>
             ) : (
                <button
                   className="bttn bttn-secondary"
-                  onClick={() => removeItemFromCart(_id, dispatch, inCart.productId, setIsLoading)}>
+                  onClick={() => removeItemFromCart(dispatch, inCart.productId, setIsLoading)}>
                   <i className="fa fa-trash-o" aria-hidden="true"></i>
                </button>
             )}
             <span> {inCart.quantity} </span>
             <button
-               onClick={() => incrementItemCartQuantity(_id, dispatch, inCart, setIsLoading)}
+               onClick={() => incrementItemCartQuantity(dispatch, inCart, setIsLoading)}
                className="bttn bttn-primary">
                +
             </button>

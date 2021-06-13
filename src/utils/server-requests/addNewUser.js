@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { backendServer } from "./index";
+import { backendServer } from "../index";
 
 export const addNewUser = async (name, email, password, authDispatch, setIsLoading) => {
    const { backendApi } = backendServer;

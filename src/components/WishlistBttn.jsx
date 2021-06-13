@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { useAuth, useCommerce } from "../context";
 
-import { toggleWishlist } from "../utils";
+import { toggleWishlist } from "../utils/server-requests";
 
 export function WishlistBttn({ item }) {
    const navigate = useNavigate();
@@ -11,9 +11,7 @@ export function WishlistBttn({ item }) {
    const isWishlisted = state.UserWishlist.find(({ productId }) => productId._id === item._id);
 
    const onClickHandler = () => {
-      authState.isUserLoggedIn
-         ? toggleWishlist(authState._id, dispatch, item, setIsLoading)
-         : navigate("/login");
+      authState.isUserLoggedIn ? toggleWishlist(dispatch, item, setIsLoading) : navigate("/login");
    };
 
    return (

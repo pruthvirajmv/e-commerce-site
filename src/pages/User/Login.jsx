@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./login.css";
 
 import useInput from "./Input";
-import { logInExistingUser } from "../../utils";
+import { logInExistingUser } from "../../utils/server-requests";
 import { useCommerce, useAuth } from "../../context";
 import { useLocation, useNavigate } from "react-router-dom";
 

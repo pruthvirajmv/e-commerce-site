@@ -12,7 +12,8 @@ import {
    Toast,
    Loader,
 } from "../../components";
-import { findProductIndex, toggleWishlist } from "../../utils";
+import { findProductIndex } from "../../utils";
+import { toggleWishlist } from "../../utils/server-requests";
 
 export function ProductDetail() {
    const { productId } = useParams();
@@ -69,7 +70,7 @@ export function ProductDetail() {
                            className="bttn bttn-secondary"
                            onClick={() =>
                               authState.isUserLoggedIn
-                                 ? toggleWishlist(authState._id, dispatch, product, setIsLoading)
+                                 ? toggleWishlist(dispatch, product, setIsLoading)
                                  : navigate("/login")
                            }>
                            {findProductIndex(state.UserWishlist, product._id) >= 0 ? (

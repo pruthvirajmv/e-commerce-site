@@ -3,7 +3,7 @@ import React from "react";
 import "./login.css";
 
 import useInput from "./Input";
-import { logOutUser } from "../../utils";
+import { logOutUser } from "../../utils/server-requests";
 import { useAuth, useCommerce } from "../../context";
 import { useNavigate } from "react-router-dom";
 

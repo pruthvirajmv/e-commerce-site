@@ -1,4 +1,4 @@
-import { addNewItemToCart } from "../utils";
+import { addNewItemToCart } from "../utils/server-requests";
 import { useCommerce, useAuth } from "../context";
 import { useNavigate } from "react-router";
 
@@ -10,7 +10,7 @@ export function AddToCartBttn({ product }) {
 
    const onClickHandler = () => {
       authState.isUserLoggedIn
-         ? addNewItemToCart(authState._id, dispatch, product, setIsLoading)
+         ? addNewItemToCart(dispatch, product, setIsLoading)
          : navigate("/login");
    };
 

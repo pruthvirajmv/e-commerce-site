@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import useInput from "./Input";
 
-import { forgotResetPassword } from "../../utils";
+import { forgotResetPassword } from "../../utils/server-requests";
 import { useAuth, useCommerce } from "../../context";
 
 export function ResetPassword() {

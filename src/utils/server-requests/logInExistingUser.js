@@ -1,5 +1,5 @@
 import axios from "axios";
-import { backendServer } from "./index";
+import { backendServer } from "../index";
 
 export const logInExistingUser = async (
    name,
@@ -40,7 +40,7 @@ export const logInExistingUser = async (
             return setErrorMsg("cannot retrive user");
 
          default:
-            return console("uncaught error");
+            return console.log("uncaught error");
       }
    } finally {
       setIsLoading(false);

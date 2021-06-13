@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useCommerce, useAuth } from "../../context";
 
 import { GoToCartBttn } from "../../components";
-import { toggleWishlist, addNewItemToCart } from "../../utils";
+import { toggleWishlist, addNewItemToCart } from "../../utils/server-requests";
 
 export default function ProductWishlistCard({ product }) {
    const { state, dispatch, setIsLoading } = useCommerce();
@@ -42,7 +42,7 @@ export default function ProductWishlistCard({ product }) {
             <div className="card-links">
                <button
                   className="card-dismiss"
-                  onClick={() => toggleWishlist(_id, dispatch, product, setIsLoading)}>
+                  onClick={() => toggleWishlist(dispatch, product, setIsLoading)}>
                   X
                </button>
                {state.UserCart.some((item) => item.productId._id === product._id) ? (
@@ -50,7 +50,7 @@ export default function ProductWishlistCard({ product }) {
                ) : (
                   <button
                      className="bttn bttn-primary"
-                     onClick={() => addNewItemToCart(_id, dispatch, product, setIsLoading)}>
+                     onClick={() => addNewItemToCart(dispatch, product, setIsLoading)}>
                      Add To Cart
                   </button>
                )}
