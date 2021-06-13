@@ -24,6 +24,10 @@ export function ProductDetail() {
 
    let product = state.ProductsList.find(({ _id }) => _id === productId);
 
+   useEffect(() => {
+      document.title = "ecom | product";
+   }, []);
+
    if (product === undefined) {
       return (
          <>
@@ -31,10 +35,6 @@ export function ProductDetail() {
          </>
       );
    }
-
-   useEffect(() => {
-      document.title = "ecom | product";
-   }, []);
 
    return (
       <>

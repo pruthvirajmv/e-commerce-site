@@ -5,7 +5,7 @@ import { useCommerce } from "../../../context";
 
 export default function ProductListingCard({ product }) {
    const { state } = useCommerce();
-   console.log(state.UserCart, product);
+
    return (
       <div key={product._id} className={product.inStock ? "card " : "card card-grey-out"}>
          <span style={{ display: product.inStock ? "none" : "inherit" }} className="card-text">
