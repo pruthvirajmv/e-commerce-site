@@ -17,7 +17,7 @@ export function AuthContextProvider({ children }) {
 
    const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
 
-   if (loginHistory.token) {
+   if (loginHistory?.token) {
       setupAuthHeaderForServiceCalls(loginHistory.token);
       initialAuthState.isUserLoggedIn = loginHistory.isUserLoggedIn;
       initialAuthState.token = loginHistory.token;
