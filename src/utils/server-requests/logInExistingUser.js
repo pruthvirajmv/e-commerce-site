@@ -1,8 +1,9 @@
 import axios from "axios";
 import { backendServer } from "../index";
+import { setupAuthHeaderForServiceCalls } from "../setupAuthHeaderForServiceCalls";
 
 export const logInExistingUser = async (
-   name,
+   email,
    password,
    dispatch,
    authDispatch,
@@ -20,12 +21,13 @@ export const logInExistingUser = async (
       } = await axios({
          method: "POST",
          url: `${backendApi}/user/login`,
-         headers: { username: name, password: password },
+         headers: { email, password },
       });
       if (status === 200) {
          authDispatch({ type: "LOAD_USER", payload: user });
          localStorage?.setItem("loginSession", JSON.stringify({ token, isUserLoggedIn: true }));
          dispatch({ type: "SHOW_TOAST", payload: "Login Successful" });
+         setupAuthHeaderForServiceCalls(token);
          navigateTo(state?.form ? state : "/products");
       }
    } catch (err) {
@@ -34,7 +36,7 @@ export const logInExistingUser = async (
             return setErrorMsg("User not found");
 
          case 403:
-            return setErrorMsg("Incorrect user name or password");
+            return setErrorMsg("Incorrect user email or password");
 
          case 400:
             return setErrorMsg("cannot retrive user");

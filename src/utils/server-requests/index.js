@@ -8,3 +8,4 @@ export { addNewUser } from "./addNewUser";
 export { logInExistingUser } from "./logInExistingUser";
 export { logOutUser } from "./logOutUser";
 export { forgotResetPassword } from "./forgotResetPassword";
+export { userAddressManagement } from "./userAddressManagement";

@@ -46,7 +46,7 @@ export function AppNavBar() {
                </li>
                <li>
                   <NavLink
-                     to={authState.isUserLoggedIn ? "/profile" : "/login"}
+                     to={authState.isUserLoggedIn ? "/account" : "/login"}
                      activeClassName="activePage">
                      <i className="fa fa-user " aria-hidden="true"></i>
                   </NavLink>

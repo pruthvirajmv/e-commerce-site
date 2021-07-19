@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
-import { backendServer } from "../../utils";
+import { backendServer, setupAuthHeaderForServiceCalls } from "../../utils";
 
 import authReducer from "./authReducer";
 
@@ -8,11 +8,10 @@ const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
    const initialAuthState = {
-      userName: "",
-      email: "",
-      _id: "",
+      user: {
+         addresses: [],
+      },
       isUserLoggedIn: false,
-      token: "",
    };
 
    const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
@@ -20,20 +19,11 @@ export function AuthContextProvider({ children }) {
    if (loginHistory?.token) {
       setupAuthHeaderForServiceCalls(loginHistory.token);
       initialAuthState.isUserLoggedIn = loginHistory.isUserLoggedIn;
-      initialAuthState.token = loginHistory.token;
    }
 
    const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
    const { backendApi } = backendServer;
-
-   function setupAuthHeaderForServiceCalls(token) {
-      if (token) {
-         token = `Bearer ${token}`;
-         return (axios.defaults.headers.common["Authorization"] = token);
-      }
-      delete axios.defaults.headers.common["Authorization"];
-   }
 
    //load user
    useEffect(() => {
@@ -51,6 +41,7 @@ export function AuthContextProvider({ children }) {
                      authDispatch({ type: "LOAD_USER", payload: user });
                   }
                } catch (err) {
+                  localStorage?.removeItem("loginSession");
                   console.error(err);
                } finally {
                }

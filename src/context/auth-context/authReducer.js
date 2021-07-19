@@ -3,19 +3,24 @@ export default function authReducer(state, { type, payload }) {
       case "LOAD_USER":
          return {
             ...state,
-            userName: payload.name,
-            _id: payload._id,
-            email: payload.email,
+            user: payload,
             isUserLoggedIn: true,
          };
 
       case "LOGOUT_USER":
          return {
             ...state,
-            userName: "",
-            email: "",
-            _id: "",
+            user: {},
             isUserLoggedIn: false,
+         };
+
+      case "UPDATE_DELIVERY_ADDRESSES":
+         return {
+            ...state,
+            user: {
+               ...user,
+               addresses: payload,
+            },
          };
 
       default:

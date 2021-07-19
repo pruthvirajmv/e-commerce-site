@@ -14,6 +14,7 @@ export function CommerceContextProvider({ children }) {
       ProductsList: [],
       UserCart: [],
       UserWishlist: [],
+      deliverTo: {},
       Toast: {
          status: "Show",
          msg: "Updating...",
@@ -23,8 +24,16 @@ export function CommerceContextProvider({ children }) {
    const [isLoading, setIsLoading] = useState(true);
 
    const { authState } = useAuth();
+   const { user } = authState;
 
    const { backendApi } = backendServer;
+
+   //set delivery address
+   useEffect(() => {
+      if (user?.addresses) {
+         dispatch({ type: "SET_DELIVERY_ADDRESS", payload: user.addresses[0] });
+      }
+   }, [user]);
 
    //load products
    useEffect(() => {

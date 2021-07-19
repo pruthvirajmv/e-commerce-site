@@ -10,9 +10,13 @@ import {
    Cart,
    WishList,
    Login,
+   Account,
    Profile,
+   Settings,
    SignUp,
    ResetPassword,
+   Addresses,
+   Orders,
 } from "./pages";
 
 import { useCommerce } from "./context";
@@ -36,7 +40,12 @@ export default function App() {
                <PrivateRoute path="/wishlist" element={<WishList />} />
                <PrivateRoute path="/cart" element={<Cart />} />
                <Route path="/login" element={<Login />} />
-               <Route path="/profile" element={<Profile />} />
+               <PrivateRoute path="/account" element={<Account />}>
+                  <PrivateRoute path="/" element={<Profile />} />
+                  <PrivateRoute path="/settings" element={<Settings />} />
+                  <PrivateRoute path="/addresses" element={<Addresses />} />
+                  <PrivateRoute path="/orders" element={<Orders />} />
+               </PrivateRoute>
                <Route path="/signup" element={<SignUp />} />
                <Route path="/reset" element={<ResetPassword />} />
             </Routes>

@@ -14,7 +14,7 @@ export function Login() {
    const { dispatch, setIsLoading } = useCommerce();
    const { authDispatch } = useAuth();
 
-   const user = useInput("");
+   const userEmail = useInput("");
    const userPassword = useInput("");
 
    const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +24,7 @@ export function Login() {
    const loginSubmitHandler = (e) => {
       e.preventDefault();
       logInExistingUser(
-         user.value,
+         userEmail.value,
          userPassword.value,
          dispatch,
          authDispatch,
@@ -41,12 +41,12 @@ export function Login() {
             <form className="form-container" onSubmit={loginSubmitHandler}>
                <h2>User Login</h2>
                <section>
-                  <label>User Name</label>
+                  <label>Email</label>
                   <input
                      className="input input-primary"
                      type="text"
-                     {...user}
-                     placeholder="enter username"
+                     {...userEmail}
+                     placeholder="enter registered email"
                      required></input>
                </section>
 

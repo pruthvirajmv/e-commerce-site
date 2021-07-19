@@ -32,6 +32,12 @@ export default function reducer(state, { type, payload }) {
             Toast: { ...state.Toast, status: "Hide" },
          };
 
+      case "SET_DELIVERY_ADDRESS":
+         return {
+            ...state,
+            deliverTo: payload || {},
+         };
+
       default:
          return state;
    }

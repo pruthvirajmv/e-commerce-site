@@ -2,24 +2,19 @@ import axios from "axios";
 
 import { backendServer } from "../index";
 
-export const addNewUser = async (name, email, password, authDispatch, setIsLoading) => {
+export const addNewUser = async (user, authDispatch, setIsLoading, navigate) => {
    const { backendApi } = backendServer;
+   const { name, email, password } = user;
+   console.log(name, email, password);
    try {
       setIsLoading(true);
-      const {
-         status,
-         data: { addedUser },
-      } = await axios({
+      const { status } = await axios({
          method: "POST",
-         url: `${backendApi}/user`,
-         headers: { username: name, email: email, password: password },
+         url: `${backendApi}/user/register`,
+         headers: { name, email, password },
       });
       if (status === 200) {
-         authDispatch({ type: "LOAD_USER", payload: addedUser });
-         localStorage?.setItem(
-            "loginSession",
-            JSON.stringify({ _id: addedUser._id, isUserLoggedIn: addedUser.isUserLoggedIn })
-         );
+         navigate("/login");
       }
    } catch (err) {
       console.error(err.response);

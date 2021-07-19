@@ -14,7 +14,7 @@ export function SignUp() {
    const { setIsLoading } = useCommerce();
    const { authDispatch } = useAuth();
 
-   const userName = useInput("");
+   const name = useInput("");
    const userMail = useInput("");
    const password = useInput("");
    const confirmPassword = useInput("");
@@ -41,11 +41,14 @@ export function SignUp() {
          confirmPassword.ref.current.focus();
          return setErrorMsg("password did not match");
       }
-      setErrorMsg("");
 
-      addNewUser(userName.value, userMail.value, password.value, authDispatch, setIsLoading);
+      const newUser = {
+         name: name.value,
+         email: userMail.value,
+         password: password.value,
+      };
 
-      navigate(state?.from ? state.from : "/");
+      addNewUser(newUser, authDispatch, setIsLoading, navigate);
    };
 
    return (
@@ -58,8 +61,9 @@ export function SignUp() {
                   <input
                      className="input input-primary"
                      type="text"
-                     {...userName}
-                     placeholder="please enter username"
+                     onClick={() => setErrorMsg("")}
+                     {...name}
+                     placeholder="please enter name"
                      required></input>
                </section>
 
@@ -68,6 +72,7 @@ export function SignUp() {
                   <input
                      className="input input-primary"
                      type="text"
+                     onClick={() => setErrorMsg("")}
                      {...userMail}
                      placeholder="please enter email"
                      required></input>
@@ -80,6 +85,7 @@ export function SignUp() {
                         className="input"
                         type={showPassword ? "text" : "password"}
                         {...password}
+                        onClick={() => setErrorMsg("")}
                         placeholder="please set password"
                         minLength="8"
                         required></input>
@@ -98,6 +104,7 @@ export function SignUp() {
                      <input
                         className="input"
                         type={showConfirmPassword ? "text" : "password"}
+                        onClick={() => setErrorMsg("")}
                         {...confirmPassword}
                         placeholder="confirm password"
                         required></input>
