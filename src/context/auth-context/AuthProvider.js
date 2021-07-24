@@ -6,14 +6,16 @@ import authReducer from "./authReducer";
 
 const AuthContext = createContext();
 
-export function AuthContextProvider({ children }) {
-   const initialAuthState = {
-      user: {
-         addresses: [],
-      },
-      isUserLoggedIn: false,
-   };
+export const initialAuthState = {
+   user: {
+      name: "",
+      email: "",
+      addresses: [],
+   },
+   isUserLoggedIn: false,
+};
 
+export function AuthContextProvider({ children }) {
    const loginHistory = JSON.parse(localStorage?.getItem("loginSession"));
 
    if (loginHistory?.token) {
@@ -24,6 +26,7 @@ export function AuthContextProvider({ children }) {
    const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
    const { backendApi } = backendServer;
+   console.log(authState);
 
    //load user
    useEffect(() => {

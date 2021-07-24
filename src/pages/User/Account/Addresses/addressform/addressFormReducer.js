@@ -47,7 +47,7 @@ export const addressFormReducer = (state, { type, payload }) => {
       case AddressFormActionType.SET_COUNTRY:
          return {
             ...state,
-            address: { ...state.address, ciuntry: payload },
+            address: { ...state.address, country: payload },
          };
 
       case AddressFormActionType.SET_PHONENUMBER:

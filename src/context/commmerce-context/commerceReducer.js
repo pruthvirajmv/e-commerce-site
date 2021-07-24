@@ -35,7 +35,7 @@ export default function reducer(state, { type, payload }) {
       case "SET_DELIVERY_ADDRESS":
          return {
             ...state,
-            deliverTo: payload || {},
+            deliverTo: payload,
          };
 
       default:

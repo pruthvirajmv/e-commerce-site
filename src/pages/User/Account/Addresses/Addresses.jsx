@@ -3,6 +3,7 @@ import { AddNewAddressModal, AddressCard } from "../../../../components";
 import { useAuth, useCommerce } from "../../../../context";
 
 import "../account.css";
+import "./address.css";
 
 export function Addresses() {
    const {
@@ -20,16 +21,13 @@ export function Addresses() {
    return (
       <>
          <h3 className="section-header">Adresses</h3>
-         <div>
-            {addresses.length === 0 && (
-               <button className="bttn bttn-secondary" onClick={() => setAddressModal(true)}>
-                  + add new address
-               </button>
-            )}
-            {addresses.map((address) => (
-               <AddressCard address={address} />
-            ))}
+         <div className="addresses-display">
+            {addresses.length > 0 &&
+               addresses.map((address) => <AddressCard address={address} key={address._id} />)}
          </div>
+         <button className="bttn bttn-secondary" onClick={() => setAddressModal(true)}>
+            + add new address
+         </button>
          <AddNewAddressModal open={addressModal} onClose={() => setAddressModal(false)} />
       </>
    );

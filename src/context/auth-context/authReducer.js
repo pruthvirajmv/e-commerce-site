@@ -1,3 +1,5 @@
+import { initialAuthState } from "./AuthProvider";
+
 export default function authReducer(state, { type, payload }) {
    switch (type) {
       case "LOAD_USER":
@@ -8,22 +10,19 @@ export default function authReducer(state, { type, payload }) {
          };
 
       case "LOGOUT_USER":
-         return {
-            ...state,
-            user: {},
-            isUserLoggedIn: false,
-         };
+         return initialAuthState;
 
       case "UPDATE_DELIVERY_ADDRESSES":
+         console.log(payload);
          return {
             ...state,
             user: {
-               ...user,
+               ...state.user,
                addresses: payload,
             },
          };
 
       default:
-         break;
+         return state;
    }
 }

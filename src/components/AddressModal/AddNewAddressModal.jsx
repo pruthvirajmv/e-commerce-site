@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useAuth, useCommerce } from "../../context";
 import { AddressFormActionType } from "../../pages/User/Account/Addresses/addressform/AddressFormActionType";
 import useAddressForm from "../../pages/User/Account/Addresses/addressform/useAddressForm";
 import { userAddressManagement } from "../../utils/server-requests";
@@ -6,10 +7,13 @@ import { userAddressManagement } from "../../utils/server-requests";
 import "./addressModal.css";
 
 export function AddNewAddressModal({ open, onClose, address }) {
+   const { authDispatch } = useAuth();
+   const { setIsLoading, dispatch } = useCommerce();
+
    const { addressFormState, addressFormDispatch } = useAddressForm();
 
-   const { name, house, street, city, state, country, pincode, phoneNumber, errorMessage } =
-      addressFormState;
+   const { name, house, street, city, state, country, pincode, phoneNumber } =
+      addressFormState.address;
 
    useEffect(() => {
       address &&
@@ -17,16 +21,42 @@ export function AddNewAddressModal({ open, onClose, address }) {
    }, []);
 
    const addressSubmitHandler = (e) => {
+      console.log(String(phoneNumber).length);
       e.preventDefault();
-      if (!(name && house && street && city && state && country && pincode && phoneNumber)) {
+      if (
+         !(
+            name !== "" &&
+            house !== "" &&
+            street !== "" &&
+            city !== "" &&
+            state !== "" &&
+            country !== "" &&
+            pincode !== "" &&
+            phoneNumber !== ""
+         )
+      ) {
          return addressFormDispatch({
             type: AddressFormActionType.SET_ERROR_MESSAGE,
             payload: "please fill all the details",
          });
       }
+      if (String(phoneNumber).length !== 10) {
+         return addressFormDispatch({
+            type: AddressFormActionType.SET_ERROR_MESSAGE,
+            payload: "please enter 10 digit phone number",
+         });
+      }
       const type = address ? "update" : "add";
-      const address = authForm;
-      const addressMangementArgs = { type };
+      const newAddress = addressFormState.address;
+      const addressMangementArgs = {
+         type,
+         address: newAddress,
+         setIsLoading,
+         authDispatch,
+         dispatch,
+         addressFormDispatch,
+         onClose,
+      };
       userAddressManagement(addressMangementArgs);
    };
 
@@ -149,7 +179,8 @@ export function AddNewAddressModal({ open, onClose, address }) {
                               }
                               required>
                               <option value="Karnataka">Karnataka</option>
-                              <option value="other">other</option>
+                              <option value="Maharashtra">Maharashtra</option>
+                              <option value="Delhi">Delhi</option>
                            </select>
                         </section>
                         <section>
@@ -164,7 +195,6 @@ export function AddNewAddressModal({ open, onClose, address }) {
                               }
                               required>
                               <option value="India">India</option>
-                              <option value="other">other</option>
                            </select>
                         </section>
                         <section>
@@ -202,7 +232,7 @@ export function AddNewAddressModal({ open, onClose, address }) {
                         </footer>
                      </form>
                   </div>
-                  <p>{errorMessage}</p>
+                  <p>{addressFormState.errorMessage}</p>
                </div>
             </div>
          )}

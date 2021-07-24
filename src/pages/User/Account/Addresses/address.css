@@ -1,3 +1,13 @@
+.addresses-display {
+   display: flex;
+   flex-direction: column;
+   row-gap: 1rem;
+   text-align: left;
+   align-items: flex-start;
+   justify-content: flex-end;
+   margin-bottom: 1rem;
+}
+
 .form-container {
    display: flex;
    flex-direction: column;

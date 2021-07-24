@@ -21,7 +21,7 @@ export const logInExistingUser = async (
       } = await axios({
          method: "POST",
          url: `${backendApi}/user/login`,
-         headers: { email, password },
+         headers: { email: email, password: password },
       });
       if (status === 200) {
          authDispatch({ type: "LOAD_USER", payload: user });

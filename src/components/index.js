@@ -10,4 +10,4 @@ export { WishlistBttn } from "./WishlistBttn";
 export { Footer } from "./Footer";
 
 export { AddNewAddressModal } from "./AddressModal/AddNewAddressModal";
-export { AddressCard } from "./AddressCard";
+export { AddressCard } from "./AddressCard/AddressCard";

@@ -1,0 +1,6 @@
+.addresCard-actions {
+   display: flex;
+   justify-content: flex-start;
+   column-gap: 1rem;
+   margin-top: 0.5rem;
+}

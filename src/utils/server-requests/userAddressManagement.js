@@ -4,23 +4,36 @@ import { AddressFormActionType } from "../../pages/User/Account/Addresses/addres
 
 export const userAddressManagement = async (addressMangementParam) => {
    const { backendApi } = backendServer;
-   const { type, address, setIsLoading, dispatch, addressFormDispatch } = addressMangementParam;
+   const { type, address, setIsLoading, authDispatch, dispatch, addressFormDispatch, onClose } =
+      addressMangementParam;
 
    try {
       setIsLoading(() => true);
       const {
          data: { addresses },
       } = await axios.post(`${backendApi}/user/addresses/${type}`, { address });
-      dispatch({ type: "UPDATE_DELIVERY_ADDRESSES", payload: addresses });
+      authDispatch({ type: "UPDATE_DELIVERY_ADDRESSES", payload: addresses });
+
       switch (type) {
          case "add":
-            return dispatch({ type: "SHOW_TOAST", payload: "new address added" });
+            onClose();
+            addressFormDispatch({
+               type: AddressFormActionType.RESET_FORM,
+            });
+            dispatch({ type: "SHOW_TOAST", payload: "new address added" });
+            return;
          case "update":
-            return dispatch({ type: "SHOW_TOAST", payload: "address updated" });
+            onClose();
+            addressFormDispatch({
+               type: AddressFormActionType.RESET_FORM,
+            });
+            dispatch({ type: "SHOW_TOAST", payload: "address updated" });
+            return;
          case "remove":
-            return dispatch({ type: "SHOW_TOAST", payload: "address removed" });
+            dispatch({ type: "SHOW_TOAST", payload: "address removed" });
+            return;
          default:
-            break;
+            return authDispatch({ type: "SHOW_TOAST", payload: "addresses updated" });
       }
    } catch (err) {
       console.error(err.message);

@@ -30,7 +30,7 @@ export function CommerceContextProvider({ children }) {
 
    //set delivery address
    useEffect(() => {
-      if (user?.addresses) {
+      if (user.addresses.length) {
          dispatch({ type: "SET_DELIVERY_ADDRESS", payload: user.addresses[0] });
       }
    }, [user]);
