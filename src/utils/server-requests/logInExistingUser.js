@@ -24,10 +24,10 @@ export const logInExistingUser = async (
          headers: { email: email, password: password },
       });
       if (status === 200) {
+         setupAuthHeaderForServiceCalls(token);
          authDispatch({ type: "LOAD_USER", payload: user });
          localStorage?.setItem("loginSession", JSON.stringify({ token, isUserLoggedIn: true }));
          dispatch({ type: "SHOW_TOAST", payload: "Login Successful" });
-         setupAuthHeaderForServiceCalls(token);
          navigateTo(state?.form ? state : "/products");
       }
    } catch (err) {

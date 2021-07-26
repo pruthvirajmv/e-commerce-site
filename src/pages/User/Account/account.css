@@ -39,3 +39,23 @@
    flex-direction: row;
    column-gap: 3rem;
 }
+
+.order-card {
+   text-align: left;
+   display: flex;
+   flex-direction: column;
+   row-gap: 0.5rem;
+   border: 1px solid;
+   padding: 0.5rem 1rem;
+}
+.order-card .card {
+   height: 9rem;
+   font-size: 0.8rem;
+}
+.order-card .card-img {
+   height: 8rem;
+}
+
+.order-card .card-name {
+   font-size: 0.8rem;
+}

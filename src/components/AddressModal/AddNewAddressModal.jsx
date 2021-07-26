@@ -21,7 +21,6 @@ export function AddNewAddressModal({ open, onClose, address }) {
    }, []);
 
    const addressSubmitHandler = (e) => {
-      console.log(String(phoneNumber).length);
       e.preventDefault();
       if (
          !(

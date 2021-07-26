@@ -9,7 +9,7 @@ import axios from "axios";
 import { backendServer } from "../../utils";
 
 export function Cart() {
-   const { state } = useCommerce();
+   const { state, dispatch } = useCommerce();
    const {
       authState: { user },
    } = useAuth();
@@ -43,30 +43,36 @@ export function Cart() {
          alert("Razorpay SDK failed to load. Are you online?");
          return;
       }
-
       const {
-         response: { order },
-      } = await axios.post(`${backendApi}`);
-
-      console.log(order);
+         data: { order },
+      } = await axios.post(`${backendApi}/order/create`, { userId: user._id });
 
       const options = {
          key: "rzp_test_AvLBL29oCvEXUZ",
          currency: order.currency,
          amount: order.amount.toString(),
          order_id: order.id,
-         name: "Donation",
+         name: "Baddy Mart",
          description: "Thank you for shopping. Keep the game on",
-         image: "http://localhost:1337/logo.svg",
-         handler: function (response) {
-            alert(response.razorpay_payment_id);
-            alert(response.razorpay_order_id);
-            alert(response.razorpay_signature);
+         handler: async function (response) {
+            try {
+               const {
+                  data: { ordered },
+               } = await axios.post(`${backendApi}/order/save`, {
+                  razorpayResponse: response,
+                  order,
+                  address: deliverTo,
+               });
+               dispatch({ type: "LOAD_USER_CART", payload: [] });
+               dispatch({ type: "UPDATE_USER_ORDERS", payload: ordered });
+            } catch (error) {
+               console.log(error);
+            }
          },
          prefill: {
             name: deliverTo.name,
             email: user.email,
-            phone_number: deliverTo.phoneNumber,
+            contact: deliverTo.phoneNumber.toString(),
          },
       };
       const paymentObject = new window.Razorpay(options);

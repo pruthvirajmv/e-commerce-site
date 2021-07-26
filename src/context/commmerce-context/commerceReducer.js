@@ -19,6 +19,18 @@ export default function reducer(state, { type, payload }) {
             UserWishlist: payload,
          };
 
+      //orders
+      case "LOAD_USER_ORDERS":
+         return {
+            ...state,
+            Orders: payload,
+         };
+      case "UPDATE_USER_ORDERS":
+         return {
+            ...state,
+            Orders: [...state.Orders, payload],
+         };
+
       //Toast Toggle
       case "SHOW_TOAST":
          return {

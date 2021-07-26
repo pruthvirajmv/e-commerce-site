@@ -14,6 +14,7 @@ export function CommerceContextProvider({ children }) {
       ProductsList: [],
       UserCart: [],
       UserWishlist: [],
+      Orders: [],
       deliverTo: {},
       Toast: {
          status: "Show",

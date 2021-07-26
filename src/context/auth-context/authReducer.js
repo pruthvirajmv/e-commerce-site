@@ -13,7 +13,6 @@ export default function authReducer(state, { type, payload }) {
          return initialAuthState;
 
       case "UPDATE_DELIVERY_ADDRESSES":
-         console.log(payload);
          return {
             ...state,
             user: {

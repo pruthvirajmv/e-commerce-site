@@ -5,7 +5,6 @@ import { backendServer } from "../index";
 export const addNewUser = async (user, authDispatch, setIsLoading, navigate) => {
    const { backendApi } = backendServer;
    const { name, email, password } = user;
-   console.log(name, email, password);
    try {
       setIsLoading(true);
       const { status } = await axios({

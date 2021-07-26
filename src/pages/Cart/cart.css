@@ -20,6 +20,10 @@
    box-shadow: none;
 }
 
+.products-display-cart .card-img {
+   height: 18rem;
+}
+
 .card-body {
    display: flex;
    flex-direction: column;

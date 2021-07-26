@@ -26,8 +26,6 @@ export function AuthContextProvider({ children }) {
    const [authState, authDispatch] = useReducer(authReducer, initialAuthState);
 
    const { backendApi } = backendServer;
-   console.log(authState);
-
    //load user
    useEffect(() => {
       if (loginHistory) {

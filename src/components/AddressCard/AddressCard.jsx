@@ -7,7 +7,7 @@ import useAddressForm from "../../pages/User/Account/Addresses/addressform/useAd
 import { userAddressManagement } from "../../utils/server-requests";
 import { AddNewAddressModal } from "../AddressModal/AddNewAddressModal";
 
-export function AddressCard({ address }) {
+export function AddressCard({ address, type }) {
    const {
       setIsLoading,
       dispatch,
@@ -37,26 +37,29 @@ export function AddressCard({ address }) {
    return (
       <div key={address?._id}>
          <h4>{address?.name} </h4>
+         <p>{address?.house} </p>
          <p>{address?.street} </p>
          <p>
             {address?.city}, {address?.state} {address?.pincode}
          </p>
          <p> {address?.country} </p>
          <p> Phone Number: {address?.phoneNumber} </p>
-         <div className="addresCard-actions">
-            <button className="bttn bttn-primary" onClick={editBttnHandler}>
-               Edit
-            </button>
-            <button className="bttn bttn-secondary" onClick={removeBttnHandler}>
-               Delete
-            </button>
-            <button
-               className="bttn bttn-secondary"
-               onClick={() => dispatch({ type: "SET_DELIVERY_ADDRESS", payload: address })}
-               disabled={deliverTo?._id === address._id ? true : ""}>
-               {deliverTo?._id === address._id ? "Default" : "Make Default"}
-            </button>
-         </div>
+         {type !== "order" && (
+            <div className="addresCard-actions">
+               <button className="bttn bttn-primary" onClick={editBttnHandler}>
+                  Edit
+               </button>
+               <button className="bttn bttn-secondary" onClick={removeBttnHandler}>
+                  Delete
+               </button>
+               <button
+                  className="bttn bttn-secondary"
+                  onClick={() => dispatch({ type: "SET_DELIVERY_ADDRESS", payload: address })}
+                  disabled={deliverTo?._id === address._id ? true : ""}>
+                  {deliverTo?._id === address._id ? "Default" : "Make Default"}
+               </button>
+            </div>
+         )}
          <AddNewAddressModal
             open={editAddress}
             onClose={() => setEditAddress(false)}
