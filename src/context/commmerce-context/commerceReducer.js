@@ -19,6 +19,14 @@ export default function reducer(state, { type, payload }) {
             UserWishlist: payload,
          };
 
+      //
+      case "USER_LOGGED_OUT":
+         return {
+            ...state,
+            UserCart: [],
+            UserWishlist: [],
+         };
+
       //orders
       case "LOAD_USER_ORDERS":
          return {

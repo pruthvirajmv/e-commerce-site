@@ -1,5 +1,5 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./styles.css";
 
@@ -25,6 +25,11 @@ import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 
 export default function App() {
    const { isLoading } = useCommerce();
+
+   const { pathname } = useLocation();
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, [pathname]);
 
    return (
       <div id="top" className="App">
