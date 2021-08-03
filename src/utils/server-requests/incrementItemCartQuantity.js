@@ -15,7 +15,7 @@ export const incrementItemCartQuantity = async (dispatch, item, setIsLoading) =>
       if (success) {
          dispatch({
             type: "SHOW_TOAST",
-            payload: `cart quantity increased ${item.productId.name} `,
+            payload: `${item.productId.name} cart quantity increased`,
          });
       }
    } catch (err) {

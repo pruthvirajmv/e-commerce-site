@@ -13,8 +13,8 @@ export const toggleWishlist = async (dispatch, item, setIsLoading) => {
          dispatch({
             type: "SHOW_TOAST",
             payload: wishlistItems.some((product) => product.productId._id === item._id)
-               ? `added to wishlist ${item.name}`
-               : `removed from wishlist ${item.name}`,
+               ? `${item.name} added to wishlist`
+               : `${item.name} removed from wishlist`,
          });
       }
    } catch (err) {

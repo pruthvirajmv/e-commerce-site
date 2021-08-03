@@ -35,27 +35,6 @@ export function Login() {
       );
    };
 
-   const guestUserLogin = () => {
-      const email = "guestuser@gmail.com";
-      const password = "neoG@2021";
-      userEmail.ref.current.value = email;
-      userPassword.ref.current.value = password;
-      setTimeout(
-         () =>
-            logInExistingUser(
-               email,
-               password,
-               dispatch,
-               authDispatch,
-               setIsLoading,
-               setErrorMsg,
-               navigate,
-               state
-            ),
-         1000
-      );
-   };
-
    return (
       <>
          <div className="login-layout">
@@ -97,9 +76,9 @@ export function Login() {
             <p className="error-msg">{errorMsg}</p>
 
             <div>
-               Login as a guest?{" "}
-               <button onClick={guestUserLogin} className="bttn bttn-secondary">
-                  Guest
+               Forgot your password?{" "}
+               <button onClick={() => navigate("/reset")} className="bttn bttn-secondary">
+                  Reset
                </button>{" "}
             </div>
             <div>

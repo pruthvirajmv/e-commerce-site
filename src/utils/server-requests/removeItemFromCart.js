@@ -10,7 +10,7 @@ export const removeItemFromCart = async (dispatch, item, setIsLoading) => {
       } = await axios.post(`${backendApi}/cart`, { id: item._id, remove: true });
       dispatch({ type: "LOAD_USER_CART", payload: cartItems });
       if (success) {
-         dispatch({ type: "SHOW_TOAST", payload: `removed from cart ${item.name}` });
+         dispatch({ type: "SHOW_TOAST", payload: `${item.name} removed from cart` });
       }
    } catch (err) {
       console.error(err.message);
