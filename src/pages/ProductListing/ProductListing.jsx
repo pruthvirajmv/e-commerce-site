@@ -44,11 +44,19 @@ export function ProductListing() {
       searchProducts: "",
    });
 
+   const getDiscountedPrice = (price, discount) => price - (price * discount) / 100;
+
    const getSortedData = (state, data) => {
       if (state.lowToHigh) {
-         return [...data].sort((a, b) => a.price - b.price);
+         return [...data].sort(
+            (a, b) =>
+               getDiscountedPrice(a.price, a.discount) - getDiscountedPrice(b.price, b.discount)
+         );
       } else if (state.highToLow) {
-         return [...data].sort((a, b) => b.price - a.price);
+         return [...data].sort(
+            (a, b) =>
+               getDiscountedPrice(b.price, b.discount) - getDiscountedPrice(a.price, a.discount)
+         );
       }
       return data;
    };

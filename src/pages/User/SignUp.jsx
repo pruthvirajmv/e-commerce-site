@@ -123,6 +123,12 @@ export function SignUp() {
                   Sign Up
                </button>
             </form>
+            <div>
+               already a user?{" "}
+               <button onClick={() => navigate("/login")} className="bttn bttn-secondary">
+                  Login
+               </button>{" "}
+            </div>
          </div>
       </>
    );
