@@ -16,7 +16,7 @@ export const moveToWishlistFromCart = async (state, dispatch, item, setIsLoading
          } = await axios.post(`${backendApi}/wishlist`, { id: item._id });
          dispatch({ type: "LOAD_USER_WISHLIST", payload: wishlistItems });
          if (success) {
-            dispatch({ type: "SHOW_TOAST", payload: `${item.name} added to wishlist` });
+            dispatch({ type: "SHOW_TOAST", payload: `added to wishlist ${item.name}` });
          }
       } catch (err) {
          console.error(err.message);

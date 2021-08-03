@@ -150,13 +150,21 @@ button:disabled {
    font-size: 1.2rem;
 }
 
+/* notification styles */
+
 .notify {
    background-color: black;
    opacity: 0.9;
    top: 5rem;
-   right: 1.5rem;
+   right: 0rem;
    bottom: inherit;
    font-size: 1.2rem;
+}
+.notify > p {
+   width: 20rem;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
 /* Footer styles */
