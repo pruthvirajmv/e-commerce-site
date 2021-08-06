@@ -1,41 +1,47 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function ProductsSearch({ dispatch }) {
-  const [searchInput, setSearchInput] = useState("");
+   const [searchInput, setSearchInput] = useState("");
 
-  function searchHandler() {
-    if (searchInput !== "")
-      dispatch({
-        type: "SEARCH_FOR_PRODUCTS",
-        payload: searchInput
-      });
-  }
+   const searchBar = useRef();
 
-  function clearSearch() {
-    dispatch({ type: "CLEAR_SEARCH" });
-    setSearchInput("");
-  }
+   useEffect(() => {
+      if (searchInput !== "")
+         dispatch({
+            type: "SEARCH_FOR_PRODUCTS",
+            payload: searchInput,
+         });
 
-  return (
-    <>
-      <div className="search-bar">
-        <div class="input-bar">
-          <input
-            type="text"
-            value={searchInput}
-            placeholder="Search products"
-            onChange={(e) => setSearchInput(() => e.target.value)}
-          />
-          {searchInput !== "" && (
-            <button onClick={clearSearch} class="bttn bttn-secondary">
-              X
-            </button>
-          )}
-        </div>
-        <button class="bttn bttn-primary" onClick={searchHandler}>
-          Search
-        </button>
-      </div>
-    </>
-  );
+      if (searchInput === "") {
+         clearSearch();
+      }
+   }, [searchInput]);
+
+   function clearSearch() {
+      dispatch({ type: "CLEAR_SEARCH" });
+      setSearchInput("");
+   }
+
+   return (
+      <>
+         <div className="search-bar input input-primary">
+            <input
+               className="input"
+               type="text"
+               ref={searchBar}
+               value={searchInput}
+               placeholder="Search products"
+               onChange={(e) => setSearchInput(() => e.target.value)}
+            />
+            {searchInput !== "" ? (
+               <i onClick={clearSearch} className="fa fa-times" aria-hidden="true"></i>
+            ) : (
+               <i
+                  onClick={() => searchBar.current.focus()}
+                  className="fa fa-search"
+                  aria-hidden="true"></i>
+            )}
+         </div>
+      </>
+   );
 }

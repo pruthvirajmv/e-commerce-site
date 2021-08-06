@@ -2,128 +2,202 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 .App {
-  font-family: sans-serif;
-  text-align: center;
-  min-height: 100vh;
+   font-family: sans-serif;
+   text-align: center;
+   min-height: 100vh;
 }
 
 body {
-  min-height: 100vh;
+   min-height: 100vh;
 }
 
+/* width */
+::-webkit-scrollbar {
+   width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+   background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+   background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background: #555;
+}
+
+/* Navbar styles */
 .nav {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  left: 0;
+   position: sticky;
+   top: 0;
+   z-index: 1;
+   left: 0;
 }
 
 .nav-list {
-  cursor: pointer;
-  display: flex;
+   cursor: pointer;
+   display: flex;
 }
 
 .nav-list li {
-  padding: 0.6rem;
-  font-size: 1.4rem;
+   display: flex;
+   flex-direction: column;
+   padding: 0.6rem;
+   font-size: 1.4rem;
 }
 
-.nav-list li:nth-child(1) {
-  display: none;
+.nav-icon-name {
+   display: none;
+   font-size: 1rem;
+}
+
+.nav .nav-main {
+   display: flex;
+   column-gap: 0.5rem;
+   align-items: baseline;
+}
+
+.nav-brand {
+   font-size: 1.7rem;
+}
+
+.nav a:hover {
+   color: white;
 }
 
 .activePage {
-  color: white;
+   color: white !important ;
 }
 
-main {
-  min-height: 80vh;
-}
-
-.bttn-no-style {
-  color: var(--primary);
-  background-color: inherit;
-  border: none;
-}
-
-.brand-name {
-  font-size: 1.3rem;
-}
-
-.card {
-  width: 15rem;
-  row-gap: 0.5rem;
-  padding: 0;
-  padding-bottom: 1rem;
-}
-
-.card .card-price {
-  flex-grow: 1;
-}
-
-.card .card-links {
-  display: flex;
-  justify-content: space-around;
-}
-
-.card .card-dismiss {
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  padding-top: 0.2rem;
+.badge {
+   font-size: 1.4rem;
 }
 
 .badge.badge-icon {
-  left: 0.8rem;
-  top: -0.5rem;
-  font-size: 1rem;
-  border-radius: 50%;
-  height: 1.2rem;
-  min-width: 1.2rem;
-  padding: 0;
+   left: 0.8rem;
+   top: -0.5rem;
+   font-size: 1rem;
+   border-radius: 50%;
+   height: 1.2rem;
+   min-width: 1.2rem;
+   padding: 0;
+}
+
+main {
+   min-height: calc(85vh - 7rem);
+}
+
+.bttn-no-style {
+   color: var(--primary);
+   background-color: inherit;
+   border: none;
+}
+
+.brand-name {
+   font-size: 1.3rem;
+}
+
+.card {
+   row-gap: 0.5rem;
+   padding: 0;
+   padding-bottom: 1rem;
+}
+
+.card-img {
+   object-fit: scale-down;
+}
+.card .card-price {
+   flex-grow: 1;
+}
+
+.card .card-links {
+   display: flex;
+   justify-content: space-around;
+}
+
+.card .card-dismiss {
+   background-color: rgba(0, 0, 0, 0.9);
+   width: 2rem;
+   height: 2rem;
+   border-radius: 50%;
+   padding-top: 0.2rem;
 }
 
 .bttn {
-  font-size: 0.9rem;
-  min-width: max-content;
+   font-size: 0.9rem;
+   min-width: max-content;
+}
+
+button:disabled {
+   opacity: 0.5;
 }
 
 .empty-msg {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  height: 80vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   font-size: 2rem;
+   height: 80vh;
 }
 
 .empty-msg .bttn {
-  font-size: 1.2rem;
+   font-size: 1.2rem;
 }
+
+/* notification styles */
 
 .notify {
-  background-color: black;
-  opacity: 0.9;
-  top: 5rem;
-  right: 1.5rem;
-  bottom: inherit;
-  font-size: 1.2rem;
+   background-color: black;
+   opacity: 0.9;
+   top: 5rem;
+   right: 0rem;
+   bottom: inherit;
+   font-size: 1.2rem;
+}
+.notify > p {
+   width: 20rem;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
 }
 
+/* Footer styles */
+
 .footer-nav {
-  position: relative;
-  width: 100%;
-  padding: 1rem 1rem;
+   position: relative;
+   width: 100%;
+   padding: 1rem 1rem;
+   margin-top: 2rem;
+}
+
+.footer-nav .nav-list {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
 }
 
 .bttn-floating-action {
-  color: black;
-  bottom: 3.5rem;
+   color: black;
+   bottom: 2rem;
+   z-index: 2;
 }
 
 @media screen and (min-width: 768px) {
-  .nav-list li:nth-child(1) {
-    display: inherit;
-  }
+   .nav-icon-name {
+      display: initial;
+   }
+
+   .badge-icon.wishlist {
+      left: 2.4rem;
+   }
+
+   .badge-icon.cart {
+      left: 1.2rem;
+   }
 }

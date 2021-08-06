@@ -1,54 +1,121 @@
-.cart-sum-card {
-  text-align: left;
-  display: flex;
-  justify-content: center;
-  position: relative;
+.cart-layout {
+   display: block;
+}
 
-  margin-top: 1rem;
+.cart-sum-card {
+   text-align: left;
+   display: flex;
+   justify-content: center;
+   position: relative;
+   margin: 1rem 0;
+   height: max-content;
 }
 
 .cart-sum-card > .card {
-  padding: 1rem 1rem;
+   padding: 1rem 1rem;
 }
 
 .cart-sum-card .card:hover {
-  border: inherit;
+   border: inherit;
+   box-shadow: none;
+}
+
+.products-display-cart .card-img {
+   height: 18rem;
+}
+
+.card-body {
+   display: flex;
+   flex-direction: column;
+   row-gap: 0.5rem;
+}
+
+.card-body section {
+   display: flex;
+   justify-content: space-between;
+}
+
+.card-body section:last-child {
+   padding-top: 0.5rem;
+   border-top: 1px solid var(--primary);
+}
+
+.cart-sum-card .bttn {
+   width: 100%;
+   font-size: 1rem;
 }
 
 .products-display-cart {
-  display: flex;
-  flex-direction: column;
-  row-gap: 0.3rem;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem 0;
-  position: relative;
+   display: flex;
+   flex-direction: column;
+   row-gap: 0.5rem;
+   justify-content: center;
+   align-items: center;
+   margin: 2rem 0;
+   position: relative;
 }
 
 .card-side-txt {
-  padding-left: 0rem;
-  flex-wrap: wrap;
+   padding-left: 0rem;
+   flex-wrap: wrap;
 }
 
 .products-display-cart .card-horizontal {
-  display: inherit;
-  width: 16rem;
+   display: inherit;
+   width: 90%;
+   max-width: 400px;
 }
 
 .card-horizontal .card-dismiss {
-  right: inherit;
-  left: 0.2rem;
+   right: inherit;
+   left: 0.2rem;
+}
+
+.products-display-cart .card-links {
+   display: "flex";
+   column-gap: "0.5rem";
+   justify-content: center;
+}
+
+.checkOutAddressCard .card:hover {
+   border: inherit;
+   box-shadow: none;
+}
+.checkOutAddressCard > .card {
+   text-align: left;
+   padding: 1rem 1rem;
 }
 
 @media screen and (min-width: 768px) {
-  .products-display-cart > .card {
-    flex-direction: row;
-  }
+   .cart-layout {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      justify-content: center;
+      width: 90%;
+      margin: 1rem auto;
+      column-gap: 1rem;
+   }
 
-  .products-display-cart .card-horizontal {
-    display: grid;
-    height: auto;
-    padding: 0;
-    width: 26rem;
-  }
+   .cart-sum-card,
+   .checkOutAddressCard {
+      margin-top: 0;
+      min-width: 250px;
+      max-width: 400px;
+   }
+
+   .products-display-cart {
+      margin: auto;
+   }
+
+   .products-display-cart > .card {
+      flex-direction: row;
+   }
+
+   .products-display-cart .card-horizontal {
+      display: grid;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      padding: 0;
+   }
 }

@@ -4,30 +4,26 @@ export default function sortReducer(state, action) {
     case "LOW_TO_HIGH":
       return {
         ...state,
-        products: state.products.sort((a, b) => a.price - b.price)
+        lowToHigh: true,
+        highToLow: false,
       };
 
     case "HIGH_TO_LOW":
       return {
         ...state,
-        products: state.products.sort((a, b) => b.price - a.price)
+        lowToHigh: false,
+        highToLow: true,
       };
 
-    case "PRODUCTS_POPULARITY":
+    case "CLEAR_SORT":
       return {
-        ...state,
-        products: state.products.sort(
-          (a, b) => b.popularityScore - a.popularityScore
-        )
-      };
-
-    case "DATA_FROM_CONTEXT":
-      return {
-        ...state,
-        products: action.payload
+        lowToHigh: false,
+        highToLow: false,
       };
 
     default:
       return state;
   }
 }
+
+

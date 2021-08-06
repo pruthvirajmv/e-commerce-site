@@ -1,27 +1,68 @@
 import "../cart.css";
 
-export default function CartTotal({ items, total }) {
-  return (
-    <>
-      <div class="cart-sum-card">
-        <div class="card ">
-          <div class="card-title">
-            <h3>Cart Total</h3>
-          </div>
-          <div class="card-body">
-            <p>Number of Items: {items} </p>
-            <p>Delivery Charge: FREE </p>
-          </div>
-          <p>
-            Your Cart Total: <strong>{total} Rs</strong>{" "}
-          </p>
-          <div class="card-links">
-            <span>
-              <button class="bttn bttn-primary">Checkout</button>
-            </span>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+export default function CartTotal({ cartItems, checkOut }) {
+   const cartItemsNumber = cartItems.reduce(
+      (orderSum, item) => (orderSum = orderSum + item.quantity),
+      0
+   );
+
+   let cartItemsTotal = cartItems.reduce(
+      (orderSum, item) => (orderSum = orderSum + item.quantity * item.productId.price),
+      0
+   );
+
+   cartItemsTotal = cartItemsTotal.toFixed(2);
+
+   let cartItemsTotalDiscount = cartItems.reduce(
+      (orderSum, item) =>
+         (orderSum =
+            orderSum + (item.quantity * item.productId.price * item.productId.discount) / 100),
+      0
+   );
+
+   cartItemsTotalDiscount = cartItemsTotalDiscount.toFixed(2);
+
+   return (
+      <>
+         <div className="cart-sum-card">
+            <div className="card ">
+               <div className="card-title">
+                  <h3>Order Summary</h3>
+               </div>
+               <div className="card-body">
+                  <section>
+                     <span>Number of Items</span>
+                     <span>{cartItemsNumber}</span>
+                  </section>
+                  <section>
+                     <span>Cart Total</span>
+                     <span>₹ {cartItemsTotal}</span>
+                  </section>
+                  <section>
+                     <p>Cart Discount</p>
+                     <div>
+                        <span>- ₹ {cartItemsTotalDiscount}</span>
+                        <p className="text-small text-gray">(you saved)</p>
+                     </div>
+                  </section>
+                  <section>
+                     <span>Delivery Charge</span>
+                     <span>FREE</span>
+                  </section>
+                  <section>
+                     <span>Order Total</span>
+                     <span>
+                        <strong>₹ {(cartItemsTotal - cartItemsTotalDiscount).toFixed(2)}</strong>
+                     </span>
+                  </section>
+               </div>
+               <div className="card-links">
+                  <button className="bttn bttn-primary" onClick={checkOut}>
+                     Checkout
+                  </button>
+               </div>
+            </div>
+         </div>
+      </>
+   );
 }

@@ -2,21 +2,20 @@ import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import setupMockCommerceServer from "./api/mock.commerce.server";
-
 import App from "./App";
-import { CommerceContextProvider } from "./context/commerce-context";
-
-setupMockCommerceServer();
+import { AuthContextProvider } from "./context/auth-context/AuthProvider";
+import { CommerceContextProvider } from "./context/commmerce-context/CommerceProvider";
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(
-  <StrictMode>
-    <Router>
-      <CommerceContextProvider>
-        <App />
-      </CommerceContextProvider>
-    </Router>
-  </StrictMode>,
-  rootElement
+   <StrictMode>
+      <AuthContextProvider>
+         <Router>
+            <CommerceContextProvider>
+               <App />
+            </CommerceContextProvider>
+         </Router>
+      </AuthContextProvider>
+   </StrictMode>,
+   rootElement
 );

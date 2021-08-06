@@ -1,37 +1,97 @@
 import React, { useEffect } from "react";
 
-import useCommerce from "../../context/commerce-context";
+import { useAuth, useCommerce } from "../../context";
 import CartTotal from "./components/CartTotal";
 import ProductsDisplayCart from "./components/ProductsDisplayCart";
-import EmptyPage from "../../utils/EmptyPage";
+import { EmptyPage } from "../../components";
+import { CheckOutAddressCard } from "./components/CheckOutAddressCard";
+import axios from "axios";
+import { backendServer } from "../../utils";
 
-export default function CartPage() {
-  const { state } = useCommerce();
+export function Cart() {
+   const { state, dispatch } = useCommerce();
+   const {
+      authState: { user },
+   } = useAuth();
 
-  const cartItems = state.ProductsList.filter((item) => item.quantity > 0);
-  const cartItemsNumber = cartItems.reduce(
-    (orderSum, item) => (orderSum = orderSum + item.quantity),
-    0
-  );
+   const cartItems = state.UserCart;
+   const { deliverTo } = state;
+   const { backendApi } = backendServer;
 
-  const cartItemsTotal = cartItems.reduce(
-    (orderSum, item) => (orderSum = orderSum + item.quantity * item.price),
-    0
-  );
+   useEffect(() => {
+      document.title = "ecom | cart";
+   }, []);
 
-  useEffect(() => {
-    document.title = "ecom | cart";
-  }, []);
+   const loadScript = (src) => {
+      return new Promise((resolve) => {
+         const script = document.createElement("script");
+         script.src = src;
+         script.onload = () => {
+            resolve(true);
+         };
+         script.onerror = () => {
+            resolve(false);
+         };
+         document.body.appendChild(script);
+      });
+   };
 
-  return (
-    <>
-      {cartItems.length === 0 && <EmptyPage page={"Cart"} />}
+   async function displayRazorpay() {
+      const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
-      {cartItems.length !== 0 && (
-        <CartTotal items={cartItemsNumber} total={cartItemsTotal} />
-      )}
+      if (!res) {
+         alert("Razorpay SDK failed to load. Are you online?");
+         return;
+      }
+      const {
+         data: { order },
+      } = await axios.post(`${backendApi}/order/create`, { userId: user._id });
 
-      <ProductsDisplayCart cartItems={cartItems} />
-    </>
-  );
+      const options = {
+         key: "rzp_test_AvLBL29oCvEXUZ",
+         currency: order.currency,
+         amount: order.amount.toString(),
+         order_id: order.id,
+         name: "Baddy Mart",
+         description: "Thank you for shopping. Keep the game on",
+         handler: async function (response) {
+            try {
+               const {
+                  data: { ordered },
+               } = await axios.post(`${backendApi}/order/save`, {
+                  razorpayResponse: response,
+                  order,
+                  address: deliverTo,
+               });
+               dispatch({ type: "LOAD_USER_CART", payload: [] });
+               dispatch({ type: "UPDATE_USER_ORDERS", payload: ordered });
+            } catch (error) {
+               console.log(error);
+            }
+         },
+         prefill: {
+            name: deliverTo.name,
+            email: user.email,
+            contact: deliverTo.phoneNumber.toString(),
+         },
+      };
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+   }
+
+   return (
+      <>
+         {cartItems.length === 0 ? (
+            <EmptyPage page={"Cart"} />
+         ) : (
+            <div className="cart-layout">
+               <ProductsDisplayCart cartItems={cartItems} />
+               <div>
+                  <CartTotal cartItems={cartItems} checkOut={displayRazorpay} />
+                  <CheckOutAddressCard />
+               </div>
+            </div>
+         )}
+      </>
+   );
 }

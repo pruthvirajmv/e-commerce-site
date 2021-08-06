@@ -1,0 +1,47 @@
+.home-avatar{
+    height: 60vh;
+    background-image: url("../../assets/badminton-shuttlecock-black-background_23-2147924599.jpg"); /* The image used */
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+
+}
+
+.company-name{
+    color: var(--primary);
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+    padding-top: 10vh;
+    font-weight: bolder;
+
+}
+
+.company-tag{
+    color: white;
+    margin-top: 0.8rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.home-avatar .shop{
+    font-size: large;
+    margin-top: 2rem;
+}
+
+.brand-shop > h1{
+    margin: 2rem auto;
+}
+
+.brand-display{
+    display: flex;
+    flex-direction: row;
+    column-gap: 2rem;
+    row-gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.brand-display  img{
+    max-width: 200px;
+    height: auto;
+}

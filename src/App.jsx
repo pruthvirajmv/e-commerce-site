@@ -1,49 +1,64 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 import "./styles.css";
 
-import Home from "./pages/Home/Home";
-import ProductListing from "./pages/ProductListing/ProductListing";
-import ProductDetail from "./pages/ProductDetail/ProductDetail";
-import Cart from "./pages/Cart/Cart";
-import WishList from "./pages/WishList/WishList";
+import {
+   Home,
+   ProductListing,
+   ProductDetail,
+   Cart,
+   WishList,
+   Login,
+   Account,
+   Profile,
+   Settings,
+   SignUp,
+   ResetPassword,
+   Addresses,
+   Orders,
+} from "./pages";
 
-import useCommerce from "./context/commerce-context";
-import AppNavBar from "./utils/AppNavBar";
-import Loader from "./utils/Loader/Loader";
-import FloatingActionBttn from "./utils/FloatingActionBttn";
+import { useCommerce } from "./context";
+import { AppNavBar, Loader, FloatingActionBttn, Footer } from "./components";
+import { PrivateRoute } from "./PrivateRoutes/PrivateRoute";
 
 export default function App() {
-  const { isLoading } = useCommerce();
+   const { isLoading } = useCommerce();
 
-  return (
-    <div id="top" className="App">
-      <AppNavBar />
+   const { pathname } = useLocation();
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, [pathname]);
 
-      {isLoading === "fetchStarted" && <Loader />}
+   return (
+      <div id="top" className="App">
+         <AppNavBar />
 
-      <main>
-        <Routes>
-          <Route path="/" element={<ProductListing />} />
-          <Route path="/products" element={<ProductListing />} />
-          <Route path="/products/:productId" element={<ProductDetail />} />
-          <Route path="/wishlist" element={<WishList />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+         {isLoading === true && <Loader />}
 
-        <FloatingActionBttn />
-      </main>
+         <main>
+            <Routes>
+               <Route path="/" element={<Home />} />
+               <Route path="/products" element={<ProductListing />} />
+               <Route path="/products/:productId" element={<ProductDetail />} />
+               <PrivateRoute path="/wishlist" element={<WishList />} />
+               <PrivateRoute path="/cart" element={<Cart />} />
+               <Route path="/login" element={<Login />} />
+               <PrivateRoute path="/account" element={<Account />}>
+                  <PrivateRoute path="/" element={<Profile />} />
+                  <PrivateRoute path="/settings" element={<Settings />} />
+                  <PrivateRoute path="/addresses" element={<Addresses />} />
+                  <PrivateRoute path="/orders" element={<Orders />} />
+               </PrivateRoute>
+               <Route path="/signup" element={<SignUp />} />
+               <Route path="/reset" element={<ResetPassword />} />
+            </Routes>
+         </main>
 
-      <footer className="footer-nav nav-dark">
-        <h5>
-          made with{" "}
-          <span>
-            <i class="fab fa-react" aria-hidden="true"></i>
-          </span>{" "}
-          react by pruthvirajmv @neoGcamp
-        </h5>
-      </footer>
-    </div>
-  );
+         <FloatingActionBttn />
+
+         <Footer />
+      </div>
+   );
 }

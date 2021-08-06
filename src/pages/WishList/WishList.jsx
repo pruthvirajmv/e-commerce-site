@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import ProductsListWishList from "./ProductsListWishList";
 
-export default function WishListPage() {
+export function WishList() {
   useEffect(() => {
     document.title = "ecom | wishlist";
   }, []);

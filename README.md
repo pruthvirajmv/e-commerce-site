@@ -1,12 +1,20 @@
 # e-commerce-site
 
-## Have created E-comm site covering the basic functionalities
+## Full stack E-comm site with the basic functionalities and backend integration 
 
-### here is the link for site preview [ecom](deploy-ecom-preview.netlify.app)
+### here is the link for site preview [ecom](https://baddymart.netlify.app)
+### backend from [repo](https://github.com/pruthvirajmv/e-commerce-site-backend/tree/development)
 
-##### upcoming features
+### what's new
 * backend implementation
-* homepage
-* Auth
-* data curation
+* data persistent
+* homepage  
+#### Below features has Backend intergration
+* Auth using headers
+* login page
+* signup page
+* password reset
+
+##### Upcoming features
+* more data curation
 * address management
