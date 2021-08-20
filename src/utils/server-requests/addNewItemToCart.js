@@ -10,7 +10,7 @@ export const addNewItemToCart = async (dispatch, item, setIsLoading) => {
       } = await axios.post(`${backendApi}/cart`, { id: item._id, qty: 1 });
       dispatch({ type: "LOAD_USER_CART", payload: cartItems });
       if (success) {
-         dispatch({ type: "SHOW_TOAST", payload: `added to cart ${item.name}` });
+         return dispatch({ type: "SHOW_TOAST", payload: `added to cart ${item.name}` });
       }
    } catch (err) {
       console.error(err.message);

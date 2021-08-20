@@ -124,10 +124,10 @@ export function SignUp() {
                </button>
             </form>
             <div>
-               already a user?{" "}
+               already a user?
                <button onClick={() => navigate("/login")} className="bttn bttn-secondary">
                   Login
-               </button>{" "}
+               </button>
             </div>
          </div>
       </>

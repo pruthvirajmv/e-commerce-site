@@ -32,7 +32,7 @@ export const logInExistingUser = async (
       }
    } catch (err) {
       switch (err.response.status) {
-         case 404:
+         case 401:
             return setErrorMsg("User not found");
 
          case 403:
