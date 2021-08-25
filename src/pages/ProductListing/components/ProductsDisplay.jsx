@@ -9,7 +9,8 @@ export default function ProductsDisplay({ filteredData }) {
    return (
       <>
          <div className="products-display">
-            {filteredData.length === 0 && <h3>No products found...</h3>}
+            {(state.ProductsList.length === 0 && <h3>Loading products...</h3>) ||
+               (filteredData.length === 0 && <h3>No products found...</h3>)}
             {filteredData.map((item) => (
                <ProductListingCard key={item._id} product={item} />
             ))}

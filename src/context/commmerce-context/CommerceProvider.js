@@ -22,7 +22,7 @@ export function CommerceContextProvider({ children }) {
       },
    });
 
-   const [isLoading, setIsLoading] = useState(true);
+   const [isLoading, setIsLoading] = useState(false);
 
    const { authState } = useAuth();
    const { user } = authState;
@@ -35,23 +35,6 @@ export function CommerceContextProvider({ children }) {
          dispatch({ type: "SET_DELIVERY_ADDRESS", payload: user.addresses[0] });
       }
    }, [user]);
-
-   //load products
-   useEffect(() => {
-      (async () => {
-         try {
-            setIsLoading(true);
-            const response = await axios.get(`${backendApi}/products`);
-            dispatch({ type: "LOAD_PRODUCTS", payload: response.data.products });
-         } catch (error) {
-            console.error("error", error.message);
-            dispatch({ type: "SHOW_TOAST", payload: "error while updating" });
-         } finally {
-            setIsLoading(false);
-            dispatch({ type: "SHOW_TOAST", payload: "page updated" });
-         }
-      })();
-   }, []);
 
    //load wishlist
    useEffect(() => {

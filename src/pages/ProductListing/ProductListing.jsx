@@ -1,7 +1,12 @@
 import React, { useEffect, useState, useReducer } from "react";
+import axios from "axios";
+import { useLocation } from "react-router";
+
 import "./productListing.css";
 
 import { useCommerce } from "../../context";
+
+import { backendServer } from "../../utils";
 
 import sortReducer from "./reducers/sortReducer";
 import filterReducer from "./reducers/filterReducer";
@@ -13,10 +18,27 @@ import ProductsSorting from "./components/ProductsSorting";
 import ProductsSearch from "./components/ProductsSearch";
 import ProductsBrandFilter from "./components/ProductsBrandFilter";
 import ProductsCategoryFilter from "./components/ProductsCategoryFilter";
-import { useLocation } from "react-router";
 
 export function ProductListing() {
-   const { state } = useCommerce();
+   const { state, dispatch, setIsLoading } = useCommerce();
+   const { backendApi } = backendServer;
+
+   //load products
+   useEffect(() => {
+      (async () => {
+         try {
+            setIsLoading(true);
+            const response = await axios.get(`${backendApi}/products`);
+            dispatch({ type: "LOAD_PRODUCTS", payload: response.data.products });
+         } catch (error) {
+            console.error("error", error.message);
+            dispatch({ type: "SHOW_TOAST", payload: "error while updating" });
+         } finally {
+            setIsLoading(false);
+            dispatch({ type: "SHOW_TOAST", payload: "page updated" });
+         }
+      })();
+   }, []);
 
    const [filterBttn, setFilterBttn] = useState(false);
 
